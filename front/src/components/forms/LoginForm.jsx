@@ -15,20 +15,10 @@ export default function RegisterForm() {
     >
       <VStack spacing={8} align='center' w='full'>
         <VStack spacing={4} align={['flex-start', 'center']} w='full'>
-          <Heading>Register</Heading>
-          <Text fontSize='md' >Create your account. It's free and only takes a minute.</Text>
+          <Heading>Login</Heading>
+          <Text fontSize='md' >Enter your email and password to login.</Text>
         </VStack>
-        <VStack spacing={4}>
-          <HStack spacing={4}>
-            <FormControl>
-              <FormLabel>First Name</FormLabel>
-              <Input variant='filled'></Input>
-            </FormControl>
-            <FormControl>
-              <FormLabel>Last Name</FormLabel>
-              <Input variant='filled'></Input>
-            </FormControl>
-          </HStack>
+        <VStack spacing={4} w='full'>
           <FormControl>
             <FormLabel>Email Address</FormLabel>
             <Input variant='filled'></Input>
@@ -37,17 +27,16 @@ export default function RegisterForm() {
             <FormLabel>Password</FormLabel>
             <Input variant='filled' type='password'></Input>
           </FormControl>
-          <FormControl>
-            <FormLabel>Confirm Password</FormLabel>
-            <Input variant='filled' type='password'></Input>
-          </FormControl>
         </VStack>
         <HStack w='full' justify='space-between'>
           <Checkbox>
-            <Text fontSize='sm'>I accept the Terms of Use & Privacy Policy</Text>
-            </Checkbox>
+            <Text fontSize='sm'>Remember me</Text>
+          </Checkbox>
+          <Button variant='link' colorscheme='blue'>
+            <Text fontSize='sm'>Forgot Password?</Text>
+          </Button>
         </HStack>
-        <Button borderRadius={10}>Create Account</Button>
+        <Button borderRadius={10}>Login</Button>
       </VStack>
     </Box>
   );
