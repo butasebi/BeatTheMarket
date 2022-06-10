@@ -1,9 +1,12 @@
-import './App.css';
-import {Box} from '@chakra-ui/react';
+import React from 'react';
+import { ChakraProvider, theme } from '@chakra-ui/react';
+import Home from './pages/Home';
 
 function App() {
   return (
-      <Box>Hello, world!</Box>
+    <ChakraProvider theme={theme}>
+      <Home />
+    </ChakraProvider>
   );
 }
 
