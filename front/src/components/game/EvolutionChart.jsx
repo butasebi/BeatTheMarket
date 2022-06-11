@@ -55,7 +55,7 @@ function getChartTimeUnit(dataTimeInterval) {
   }
 }
 
-function getOptions(dataTimeInterval) {
+function getOptions(startPrice, dataTimeInterval) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
 
   return {
@@ -71,7 +71,7 @@ function getOptions(dataTimeInterval) {
       y: {
         ticks: {
           callback: function(value) {
-            return (value / 70 * 100).toFixed(0) + '%';
+            return ((value - startPrice) / startPrice * 100).toFixed(0) + '%';
           },
         },
         scaleLabel: {
@@ -99,7 +99,7 @@ function EvolutionChart(props) {
   const dataTimeInterval = props.dataTimeInterval;
 
   const data = prepareRawData(rawData);
-  const options = getOptions(dataTimeInterval);
+  const options = getOptions(rawData[0].price, dataTimeInterval);
 
   return (
     <Box maxWidth='55em' margin='auto'>
