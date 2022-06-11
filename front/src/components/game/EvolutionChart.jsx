@@ -1,3 +1,5 @@
+// noinspection RequiredAttributes
+
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -32,6 +34,7 @@ function prepareRawData(rawData) {
     data: rawData.map(item => ({ x: item.date, y: item.price })),
     borderColor: 'lime',
     backgroundColor: 'lime',
+    pointRadius: 0,
   });
 
   return data;
@@ -56,6 +59,7 @@ function getOptions(dataTimeInterval) {
 
   return {
     responsive: true,
+
     scales: {
       x: {
         type: 'time',
