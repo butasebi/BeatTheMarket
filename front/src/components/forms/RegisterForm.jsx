@@ -159,7 +159,7 @@ export default function RegisterForm() {
                                   variant='filled'
                                   type={showPassword ? 'text' : 'password'} />
                                 <InputRightElement width='4.5rem'>
-                                  <Button size='sm' bg='white' borderRadius={10}
+                                  <Button size='sm'
                                           onClick={handleClick}>
                                     {showPassword ? 'Hide' : 'Show'}
                                   </Button>
