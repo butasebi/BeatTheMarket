@@ -1,9 +1,14 @@
-import { Box, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import EvolutionChart from './EvolutionChart';
+import { generateStockData } from './dataGenerator';
 
 function Game() {
+  const timeInterval = 'day';
+  const data = generateStockData(timeInterval);
+
   return (
     <Box>
-      <Text>Hello, world!</Text>
+      <EvolutionChart rawData={data} dataTimeInterval={timeInterval} />
     </Box>
   );
 }
