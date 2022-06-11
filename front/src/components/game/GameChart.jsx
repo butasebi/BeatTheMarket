@@ -130,7 +130,7 @@ function getOptions(startPrice, startDate, dataTimeInterval) {
       },
       tooltip: {
         callbacks: {
-          title: function(context) {
+          title: (context) => {
             const dateLabel = context[0].label;
             const date = new Date(dateLabel.slice(0, -5));
 
@@ -147,6 +147,14 @@ function getOptions(startPrice, startDate, dataTimeInterval) {
               return `Year ${dateDiff.years}, Week ${((dateDiff.months *
                 30 + dateDiff.days) / 7).toFixed()}`;
             }
+          },
+          label: (context) => {
+            const value = context.parsed.y;
+            const percentChange = `${(value > 0) ? '+' : ''}${value.toFixed(
+              2)}%`;
+            const datasetLabel = context.dataset.label;
+
+            return ` ${datasetLabel}: ${percentChange}`;
           },
         },
       },
