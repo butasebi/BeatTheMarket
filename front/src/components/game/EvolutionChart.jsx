@@ -48,6 +48,7 @@ function prepareRawData(rawData) {
     },
     borderColor: 'lime',
     backgroundColor: 'lime',
+    borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
   });
