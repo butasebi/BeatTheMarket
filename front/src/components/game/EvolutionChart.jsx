@@ -74,10 +74,15 @@ function getOptions(startPrice, dataTimeInterval) {
             weight: '500',
           },
         },
+        ticks: {
+          callback: (value, index) => {
+            return ((index % 2 === 1) ? index + 1 : '');
+          },
+        },
       },
       y: {
         ticks: {
-          callback: function(value) {
+          callback: (value) => {
             return ((value - startPrice) / startPrice * 100).toFixed(0) + '%';
           },
         },
