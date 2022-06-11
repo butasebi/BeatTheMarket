@@ -17,6 +17,7 @@ import { Box } from '@chakra-ui/react';
 import 'chartjs-adapter-date-fns';
 import { addAlphaToHex } from '../../utils/colors';
 import customTheme from '../../styles/customTheme';
+import { intervalToDuration } from 'date-fns';
 
 // Prepare ChartJS
 ChartJS.register(
@@ -32,13 +33,13 @@ ChartJS.register(
 );
 
 function priceToRelativePercentGain(price, startPrice) {
-  return ((price - startPrice) / startPrice * 100).toFixed(0);
+  return ((price - startPrice) / startPrice * 100).toFixed(2);
 }
 
 function prepareRawData(rawData) {
   const data = { datasets: [] };
   data.datasets.push({
-    label: 'Stock price',
+    label: 'Buy and Hold',
     data: rawData.map(item => ({
       x: item.date,
       y: priceToRelativePercentGain(item.price, rawData[0].price),
@@ -53,6 +54,7 @@ function prepareRawData(rawData) {
     borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
+    pointHitRadius: 10,
   });
 
   return data;
@@ -72,7 +74,7 @@ function getChartTimeUnit(dataTimeInterval) {
   }
 }
 
-function getOptions(startPrice, dataTimeInterval) {
+function getOptions(startPrice, startDate, dataTimeInterval) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
 
   return {
@@ -123,18 +125,51 @@ function getOptions(startPrice, dataTimeInterval) {
       legend: {
         display: true,
         position: 'top',
+        onClick: () => {
+        },
+      },
+      tooltip: {
+        callbacks: {
+          title: (context) => {
+            const dateLabel = context[0].label;
+            const date = new Date(dateLabel.slice(0, -5));
+
+            const dateDiff = intervalToDuration({
+              start: startDate,
+              end: date,
+            });
+
+            if (timeUnit === 'hour') {
+              return `Hour ${dateDiff.hours}, Minute ${dateDiff.minutes}`;
+            } else if (timeUnit === 'month') {
+              return `Month ${dateDiff.months}, Day ${dateDiff.days}`;
+            } else if (timeUnit === 'year') {
+              return `Year ${dateDiff.years}, Week ${((dateDiff.months *
+                30 + dateDiff.days) / 7).toFixed()}`;
+            }
+          },
+          label: (context) => {
+            const value = context.parsed.y;
+            const percentChange = `${(value > 0) ? '+' : ''}${value.toFixed(
+              2)}%`;
+            const datasetLabel = context.dataset.label;
+
+            return ` ${datasetLabel}: ${percentChange}`;
+          },
+        },
       },
     },
   };
 }
 
-function EvolutionChart(props) {
+function GameChart(props) {
   // Props
   const rawData = props.rawData;
   const dataTimeInterval = props.dataTimeInterval;
 
   const data = prepareRawData(rawData);
-  const options = getOptions(rawData[0].price, dataTimeInterval);
+  const options = getOptions(rawData[0].price, rawData[0].date,
+    dataTimeInterval);
 
   return (
     <Box maxWidth='55em' margin='auto'>
@@ -143,4 +178,4 @@ function EvolutionChart(props) {
   );
 }
 
-export default EvolutionChart;
+export default GameChart;

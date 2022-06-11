@@ -1,5 +1,5 @@
 import { Box } from '@chakra-ui/react';
-import EvolutionChart from './EvolutionChart';
+import GameChart from './GameChart';
 import { generateStockData } from './dataGenerator';
 
 function Game() {
@@ -8,7 +8,7 @@ function Game() {
 
   return (
     <Box>
-      <EvolutionChart rawData={data} dataTimeInterval={timeInterval} />
+      <GameChart rawData={data} dataTimeInterval={timeInterval} />
     </Box>
   );
 }
