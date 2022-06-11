@@ -60,12 +60,19 @@ function getOptions(startPrice, dataTimeInterval) {
 
   return {
     responsive: true,
-
     scales: {
       x: {
         type: 'time',
         time: {
           unit: timeUnit,
+        },
+        title: {
+          display: true,
+          text: timeUnit[0].toUpperCase() + timeUnit.slice(1),
+          font: {
+            size: 14,
+            weight: '500',
+          },
         },
       },
       y: {
@@ -74,9 +81,13 @@ function getOptions(startPrice, dataTimeInterval) {
             return ((value - startPrice) / startPrice * 100).toFixed(0) + '%';
           },
         },
-        scaleLabel: {
+        title: {
           display: true,
-          labelString: 'Percentage',
+          text: 'Percent Gain',
+          font: {
+            size: 14,
+            weight: '500',
+          },
         },
       },
     },
@@ -84,7 +95,7 @@ function getOptions(startPrice, dataTimeInterval) {
       legend: {
         display: true,
         position: 'top',
-      }
+      },
     },
   };
 }
