@@ -103,7 +103,7 @@ fabric.properties
 
 ############################# React #############################
 .DS_STORE
-node_modules
+front/node_modules
 scripts/flow/*/.flowconfig
 .flowconfig
 *~
