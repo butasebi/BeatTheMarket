@@ -128,7 +128,7 @@ function getOptions(startPrice, dataTimeInterval) {
   };
 }
 
-function EvolutionChart(props) {
+function GameChart(props) {
   // Props
   const rawData = props.rawData;
   const dataTimeInterval = props.dataTimeInterval;
@@ -143,4 +143,4 @@ function EvolutionChart(props) {
   );
 }
 
-export default EvolutionChart;
+export default GameChart;
