@@ -42,7 +42,7 @@ function generateStockData(timeInterval) {
     throw new Error('The timeStep must be minute/day/week.');
   }
 
-  const PRICE_VOLATILITY = 0.06;
+  const PRICE_VOLATILITY = 0.1;
 
   const startDate = generateRandomDate();
   const startPrice = Math.random() * 100 + 40;
