@@ -84,11 +84,7 @@ function getOptions(startPrice, dataTimeInterval) {
       legend: {
         display: true,
         position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Chart.js Line Chart',
-      },
+      }
     },
   };
 }
