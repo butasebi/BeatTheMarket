@@ -105,7 +105,7 @@ export default function RegisterForm() {
                           <Checkbox>
                             <Text fontSize='sm'>Remember me</Text>
                           </Checkbox>
-                          <Button variant='link' colorscheme='blue'>
+                          <Button variant='link'>
                             <Text fontSize='sm'>Forgot Password?</Text>
                           </Button>
                         </HStack>
