@@ -13,6 +13,7 @@ import { Line } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/react';
 import 'chartjs-adapter-date-fns';
 
+// Prepare ChartJS
 ChartJS.register(
   CategoryScale,
   TimeScale,
@@ -24,83 +25,79 @@ ChartJS.register(
   Legend,
 );
 
-export const options = {
-  responsive: true,
-  scales: {
-    x: {
-      type: 'time',
-      time: {
-        unit: 'day',
-        displayFormats: {
-          quarter: 'MMM YYYY',
+function prepareRawData(rawData) {
+  const data = { datasets: [] };
+  data.datasets.push({
+    label: 'Stock price',
+    data: rawData.map(item => ({ x: item.date, y: item.price })),
+    borderColor: 'lime',
+    backgroundColor: 'lime',
+  });
+
+  return data;
+}
+
+function getChartTimeUnit(dataTimeInterval) {
+  // Minute-by-minute data => hour unit
+  // Day-by-day data => month unit
+  // Week-by-week data => year unit
+
+  if (dataTimeInterval === 'minute') {
+    return 'hour';
+  } else if (dataTimeInterval === 'day') {
+    return 'month';
+  } else if (dataTimeInterval === 'week') {
+    return 'year';
+  }
+}
+
+function getOptions(dataTimeInterval) {
+  const timeUnit = getChartTimeUnit(dataTimeInterval);
+
+  return {
+    responsive: true,
+    scales: {
+      x: {
+        type: 'time',
+        time: {
+          unit: timeUnit,
+        },
+      },
+      y: {
+        ticks: {
+          callback: function(value) {
+            return (value / 70 * 100).toFixed(0) + '%';
+          },
+        },
+        scaleLabel: {
+          display: true,
+          labelString: 'Percentage',
         },
       },
     },
-    y: {
-      ticks: {
-        callback: function(value) {
-          return (value / 70 * 100).toFixed(0) + '%';
-        },
-      },
-      scaleLabel: {
+    plugins: {
+      legend: {
         display: true,
-        labelString: 'Percentage',
+        position: 'top',
+      },
+      title: {
+        display: true,
+        text: 'Chart.js Line Chart',
       },
     },
-  },
-  plugins: {
-    legend: {
-      display: true,
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Chart.js Line Chart',
-    },
-  },
-};
+  };
+}
 
-export const data = {
-  datasets: [
-    {
-      label: 'Money',
-      data: [
-        {
-          x: '2021-11-06 23:39:30',
-          y: 50,
-        }, {
-          x: '2021-11-07 01:00:28',
-          y: 60,
-        }, {
-          x: '2021-11-08 09:00:28',
-          y: 20,
-        },
-        {
-          x: '2021-11-10 09:00:28',
-          y: 40,
-        },
-        {
-          x: '2021-11-11 09:00:28',
-          y: 40,
-        },
-        {
-          x: '2021-11-12 09:00:28',
-          y: 40,
-        },
-        {
-          x: '2021-11-13 09:00:28',
-          y: 40,
-        },
-      ],
-      borderColor: 'lime',
-      backgroundColor: 'lime',
-    },
-  ],
-};
+function EvolutionChart(props) {
+  // Props
+  const rawData = props.rawData;
+  const dataTimeInterval = props.dataTimeInterval;
 
-function EvolutionChart() {
+  const data = prepareRawData(rawData);
+  const options = getOptions(dataTimeInterval);
+
   return (
-    <Box maxWidth='45em' margin='auto'>
+    <Box maxWidth='55em' margin='auto'>
       <Line data={data} options={options} />
     </Box>
   );
