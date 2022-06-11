@@ -32,7 +32,7 @@ ChartJS.register(
 );
 
 function priceToRelativePercentGain(price, startPrice) {
-  return ((price - startPrice) / startPrice * 100).toFixed(0);
+  return ((price - startPrice) / startPrice * 100).toFixed(2);
 }
 
 function prepareRawData(rawData) {
