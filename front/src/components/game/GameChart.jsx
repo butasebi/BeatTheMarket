@@ -38,7 +38,7 @@ function priceToRelativePercentGain(price, startPrice) {
 function prepareRawData(rawData) {
   const data = { datasets: [] };
   data.datasets.push({
-    label: 'Stock price',
+    label: 'Buy and Hold',
     data: rawData.map(item => ({
       x: item.date,
       y: priceToRelativePercentGain(item.price, rawData[0].price),
