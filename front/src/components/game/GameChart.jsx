@@ -123,6 +123,8 @@ function getOptions(startPrice, dataTimeInterval) {
       legend: {
         display: true,
         position: 'top',
+        onClick: () => {
+        },
       },
     },
   };
