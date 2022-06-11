@@ -3,6 +3,7 @@
 import {
   CategoryScale,
   Chart as ChartJS,
+  Filler,
   Legend,
   LinearScale,
   LineElement,
@@ -25,6 +26,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  Filler,
 );
 
 function priceToRelativePercentGain(price, startPrice) {
@@ -39,6 +41,11 @@ function prepareRawData(rawData) {
       x: item.date,
       y: priceToRelativePercentGain(item.price, rawData[0].price),
     })),
+    fill: {
+      target: 'origin',
+      above: 'rgba(0, 255, 0, 0.25)',
+      below: 'rgba(0, 255, 0, 0.25)',
+    },
     borderColor: 'lime',
     backgroundColor: 'lime',
     pointRadius: 0,
