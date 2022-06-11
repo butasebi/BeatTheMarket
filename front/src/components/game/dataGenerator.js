@@ -3,8 +3,14 @@ const VALID_TIME_INTERVALS = ['minute', 'day', 'week'];
 function generateRandomDate() {
   const endDate = new Date(`${new Date().getFullYear() - 10}-01-01`);
   const startDate = new Date(`${new Date().getFullYear() - 40}-01-01`);
-  return new Date(startDate.getTime() + Math.random() *
+
+  const generatedDate = new Date(startDate.getTime() + Math.random() *
     (endDate.getTime() - startDate.getTime()));
+  generatedDate.setDate(1);
+  generatedDate.setMonth(0);
+  generatedDate.setMinutes(0, 0, 0);
+
+  return generatedDate;
 }
 
 function getNextDate(currentDate, timeInterval) {
