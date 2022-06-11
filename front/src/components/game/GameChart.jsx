@@ -17,6 +17,7 @@ import { Box } from '@chakra-ui/react';
 import 'chartjs-adapter-date-fns';
 import { addAlphaToHex } from '../../utils/colors';
 import customTheme from '../../styles/customTheme';
+import { intervalToDuration } from 'date-fns';
 
 // Prepare ChartJS
 ChartJS.register(
@@ -73,7 +74,7 @@ function getChartTimeUnit(dataTimeInterval) {
   }
 }
 
-function getOptions(startPrice, dataTimeInterval) {
+function getOptions(startPrice, startDate, dataTimeInterval) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
 
   return {
@@ -127,6 +128,28 @@ function getOptions(startPrice, dataTimeInterval) {
         onClick: () => {
         },
       },
+      tooltip: {
+        callbacks: {
+          title: function(context) {
+            const dateLabel = context[0].label;
+            const date = new Date(dateLabel.slice(0, -5));
+
+            const dateDiff = intervalToDuration({
+              start: startDate,
+              end: date,
+            });
+
+            if (timeUnit === 'hour') {
+              return `Hour ${dateDiff.hours}, Minute ${dateDiff.minutes}`;
+            } else if (timeUnit === 'month') {
+              return `Month ${dateDiff.months}, Day ${dateDiff.days}`;
+            } else if (timeUnit === 'year') {
+              return `Year ${dateDiff.years}, Week ${((dateDiff.months *
+                30 + dateDiff.days) / 7).toFixed()}`;
+            }
+          },
+        },
+      },
     },
   };
 }
@@ -137,7 +160,8 @@ function GameChart(props) {
   const dataTimeInterval = props.dataTimeInterval;
 
   const data = prepareRawData(rawData);
-  const options = getOptions(rawData[0].price, dataTimeInterval);
+  const options = getOptions(rawData[0].price, rawData[0].date,
+    dataTimeInterval);
 
   return (
     <Box maxWidth='55em' margin='auto'>
