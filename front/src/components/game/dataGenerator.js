@@ -8,7 +8,7 @@ function generateRandomDate() {
     (endDate.getTime() - startDate.getTime()));
   generatedDate.setDate(1);
   generatedDate.setMonth(0);
-  generatedDate.setMinutes(0, 0, 0);
+  generatedDate.setMinutes(0, 0, 1);
 
   return generatedDate;
 }
