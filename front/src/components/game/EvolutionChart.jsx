@@ -15,6 +15,8 @@ import {
 import { Line } from 'react-chartjs-2';
 import { Box } from '@chakra-ui/react';
 import 'chartjs-adapter-date-fns';
+import { addAlphaToHex } from '../../utils/colors';
+import customTheme from '../../styles/customTheme';
 
 // Prepare ChartJS
 ChartJS.register(
@@ -43,11 +45,11 @@ function prepareRawData(rawData) {
     })),
     fill: {
       target: 'origin',
-      above: 'rgba(0, 255, 0, 0.25)',
-      below: 'rgba(0, 255, 0, 0.25)',
+      above: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
+      below: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
     },
-    borderColor: 'lime',
-    backgroundColor: 'lime',
+    borderColor: customTheme.colors.brand['400'],
+    backgroundColor: customTheme.colors.brand['400'],
     borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
