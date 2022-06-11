@@ -35,6 +35,7 @@ function prepareRawData(rawData) {
     borderColor: 'lime',
     backgroundColor: 'lime',
     pointRadius: 0,
+    tension: 0.5,
   });
 
   return data;
