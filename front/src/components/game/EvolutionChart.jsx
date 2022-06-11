@@ -27,11 +27,18 @@ ChartJS.register(
   Legend,
 );
 
+function priceToRelativePercentGain(price, startPrice) {
+  return ((price - startPrice) / startPrice * 100).toFixed(0);
+}
+
 function prepareRawData(rawData) {
   const data = { datasets: [] };
   data.datasets.push({
     label: 'Stock price',
-    data: rawData.map(item => ({ x: item.date, y: item.price })),
+    data: rawData.map(item => ({
+      x: item.date,
+      y: priceToRelativePercentGain(item.price, rawData[0].price),
+    })),
     borderColor: 'lime',
     backgroundColor: 'lime',
     pointRadius: 0,
@@ -81,9 +88,15 @@ function getOptions(startPrice, dataTimeInterval) {
         },
       },
       y: {
+        grid: {
+          color: (context) => {
+            return context.tick.value === 0 ? '#999' : 'rgba(0, 0, 0, 0.1)';
+          },
+        },
         ticks: {
+          beginAtZero: true,
           callback: (value) => {
-            return ((value - startPrice) / startPrice * 100).toFixed(0) + '%';
+            return `${value}%`;
           },
         },
         title: {
