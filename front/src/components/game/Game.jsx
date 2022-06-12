@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Stack, Text } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Text } from '@chakra-ui/react';
 import GameChart from './GameChart';
 import { useEffect, useState } from 'react';
 
@@ -19,7 +19,7 @@ function BuySellButton(props) {
 
   return (
     <Button colorScheme='brand' width='14rem' variant={variant}
-            onClick={onClick}>
+            onClick={onClick} size='lg'>
       {buttonText}
     </Button>
   );
@@ -28,18 +28,18 @@ function BuySellButton(props) {
 function MoneyStats(props) {
   const { buyAndHoldInvestment, userInvestment } = props;
   return (
-    <Flex direction='column'>
+    <Flex direction='column' mt='5'>
       <Flex justifyContent='space-between' gap='2'>
-        <Text display='inline'>Buy and Hold: </Text>
+        <Text display='inline' fontSize='lg'>Buy and Hold: </Text>
         <Text display='inline' variant='monospace' color='blue.400'
-              fontWeight='800' fontSize='lg' minWidth='5em' align='right'>
+              fontWeight='800' fontSize='xl' minWidth='5em' align='right'>
           {MONEY_FORMATTER.format(buyAndHoldInvestment)}
         </Text>
       </Flex>
       <Flex justifyContent='space-between' gap='2'>
-        <Text display='inline'>Your investment: </Text>
+        <Text display='inline' fontSize='lg'>Your investment: </Text>
         <Text display='inline' variant='monospace' color='brand.400'
-              fontWeight='800' fontSize='lg' minWidth='5em' align='right'>
+              fontWeight='800' fontSize='xl' minWidth='5em' align='right'>
           {MONEY_FORMATTER.format(userInvestment)}
         </Text>
       </Flex>
@@ -106,13 +106,13 @@ function Game(props) {
         rawPriceData={slicedData} rawInvestmentData={investmentData}
         dataTimeInterval={dataTimeInterval} lastDate={lastDate}
       />
-      <Center mt='3' ml='4.7rem'>
-        <Stack alignItems='center'>
+      <Center mt='5' ml='4.7rem'>
+        <Flex direction='column' alignItems='center'>
           <BuySellButton isInvested={isInvested}
                          setIsInvested={setIsInvested} />
           <MoneyStats buyAndHoldInvestment={buyAndHoldInvestment}
                       userInvestment={userInvestment} />
-        </Stack>
+        </Flex>
       </Center>
     </Box>
   );
