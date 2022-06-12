@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Proiect_DAW.Entities;
-using Proiect_DAW.Models;
+using CryptoGame.Entities;
+using CryptoGame.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proiect_DAW.Managers
+namespace CryptoGame.Managers
 {
     public class AuthenticationManager : IAuthenticationManager
     {
