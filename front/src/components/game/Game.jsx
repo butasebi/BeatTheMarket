@@ -1,6 +1,5 @@
 import { Box, Button, Center } from '@chakra-ui/react';
 import GameChart from './GameChart';
-import { generateStockData } from './dataGenerator';
 import { useState } from 'react';
 
 function BuySellButton(props) {
@@ -20,15 +19,13 @@ function BuySellButton(props) {
   );
 }
 
-function Game() {
+function Game(props) {
+  const { rawData, dataTimeInterval } = props;
   const [isSelling, setIsSelling] = useState(true);
-
-  const timeInterval = 'day';
-  const data = generateStockData(timeInterval);
 
   return (
     <Box>
-      <GameChart rawData={data} dataTimeInterval={timeInterval} />
+      <GameChart rawData={rawData} dataTimeInterval={dataTimeInterval} />
       <Center mt='3'>
         <BuySellButton isSelling={isSelling} setIsSelling={setIsSelling} />
       </Center>
