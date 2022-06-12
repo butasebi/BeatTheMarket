@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Proiect_DAW.Managers;
-using Proiect_DAW.Models;
+using CryptoGame.Managers;
+using CryptoGame.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proiect_DAW.Controllers
+namespace CryptoGame.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -49,7 +49,7 @@ namespace CryptoGame
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Proiect_DAW", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crypto Game", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
@@ -81,7 +81,7 @@ namespace CryptoGame
             });
             services.AddDbContext<ProjectContext>(options => options
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-                .UseSqlServer("Server = (localdb)\\ProjectsV13; Initial Catalog = Items; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False"));
+                .UseSqlServer("Server = (localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
             services.AddIdentity<User, Role>()
                 .AddEntityFrameworkStores<ProjectContext>();
@@ -135,7 +135,7 @@ namespace CryptoGame
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Proiect_DAW v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crypto Game v1"));
             }
 
             app.UseHttpsRedirection();

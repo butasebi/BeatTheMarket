@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proiect_DAW.Models
+namespace CryptoGame.Models
 {
     public class SignupUserModel
     {
