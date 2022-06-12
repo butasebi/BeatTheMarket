@@ -1,4 +1,15 @@
-import { Box, Button, Center, Flex, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Stat,
+  StatArrow,
+  StatGroup,
+  StatHelpText,
+  StatLabel,
+  StatNumber,
+} from '@chakra-ui/react';
 import GameChart from './GameChart';
 import { useEffect, useState } from 'react';
 
@@ -27,23 +38,32 @@ function BuySellButton(props) {
 
 function MoneyStats(props) {
   const { buyAndHoldInvestment, userInvestment } = props;
+
+  const userVsHoldPercentDiff = ((userInvestment - buyAndHoldInvestment) /
+    buyAndHoldInvestment * 100);
+
   return (
-    <Flex direction='column' mt='5'>
-      <Flex justifyContent='space-between' gap='2'>
-        <Text display='inline' fontSize='lg'>Buy and Hold: </Text>
-        <Text display='inline' variant='monospace' color='blue.400'
-              fontWeight='800' fontSize='xl' minWidth='5em' align='right'>
+    <StatGroup width='24rem' mt='6' ml='5rem'>
+      <Stat>
+        <StatLabel>Buy and Hold</StatLabel>
+        <StatNumber color='blue.400'>
           {MONEY_FORMATTER.format(buyAndHoldInvestment)}
-        </Text>
-      </Flex>
-      <Flex justifyContent='space-between' gap='2'>
-        <Text display='inline' fontSize='lg'>Your investment: </Text>
-        <Text display='inline' variant='monospace' color='brand.400'
-              fontWeight='800' fontSize='xl' minWidth='5em' align='right'>
+        </StatNumber>
+      </Stat>
+
+      <Stat>
+        <StatLabel>Your investment</StatLabel>
+        <StatNumber color='brand.400'>
           {MONEY_FORMATTER.format(userInvestment)}
-        </Text>
-      </Flex>
-    </Flex>
+        </StatNumber>
+        <StatHelpText>
+          <StatArrow
+            type={(userVsHoldPercentDiff >= 0) ? 'increase' : 'decrease'}
+          />
+          {Math.abs(userVsHoldPercentDiff).toFixed(2)}%
+        </StatHelpText>
+      </Stat>
+    </StatGroup>
   );
 
 }
@@ -106,7 +126,7 @@ function Game(props) {
         rawPriceData={slicedData} rawInvestmentData={investmentData}
         dataTimeInterval={dataTimeInterval} lastDate={lastDate}
       />
-      <Center mt='5' ml='4.7rem'>
+      <Center mt='6' ml='4.7rem'>
         <Flex direction='column' alignItems='center'>
           <BuySellButton isInvested={isInvested}
                          setIsInvested={setIsInvested} />
