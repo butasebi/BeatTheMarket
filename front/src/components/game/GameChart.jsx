@@ -39,7 +39,10 @@ function priceToRelativePercentGain(price, startPrice) {
 function prepareRawData(rawPriceData, rawInvestmentData) {
   const data = { datasets: [] };
 
+  const AREA_OPACITY = 0.25;
+
   // Price data
+  const PRICE_DATA_COLOR = customTheme.colors.blue['400'];
   data.datasets.push({
     label: 'Buy and Hold',
     data: rawPriceData.map(item => ({
@@ -48,11 +51,11 @@ function prepareRawData(rawPriceData, rawInvestmentData) {
     })),
     fill: {
       target: 'origin',
-      above: addAlphaToHex(customTheme.colors.blue['400'], 0.25),
-      below: addAlphaToHex(customTheme.colors.blue['400'], 0.25),
+      above: addAlphaToHex(PRICE_DATA_COLOR, AREA_OPACITY),
+      below: addAlphaToHex(PRICE_DATA_COLOR, AREA_OPACITY),
     },
-    borderColor: customTheme.colors.blue['400'],
-    backgroundColor: customTheme.colors.blue['400'],
+    borderColor: PRICE_DATA_COLOR,
+    backgroundColor: PRICE_DATA_COLOR,
     borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
@@ -60,6 +63,7 @@ function prepareRawData(rawPriceData, rawInvestmentData) {
   });
 
   // Investment data
+  const INVESTMENT_DATA_COLOR = customTheme.colors.brand['400'];
   data.datasets.push({
     label: 'Your investment',
     data: rawInvestmentData.map(item => ({
@@ -68,11 +72,11 @@ function prepareRawData(rawPriceData, rawInvestmentData) {
     })),
     fill: {
       target: 'origin',
-      above: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
-      below: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
+      above: addAlphaToHex(INVESTMENT_DATA_COLOR, AREA_OPACITY),
+      below: addAlphaToHex(INVESTMENT_DATA_COLOR, AREA_OPACITY),
     },
-    borderColor: customTheme.colors.brand['400'],
-    backgroundColor: customTheme.colors.brand['400'],
+    borderColor: INVESTMENT_DATA_COLOR,
+    backgroundColor: INVESTMENT_DATA_COLOR,
     borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
