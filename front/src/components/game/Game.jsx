@@ -3,6 +3,10 @@ import GameChart from './GameChart';
 import { useEffect, useState } from 'react';
 
 const START_MONEY = 10000;
+const MONEY_FORMATTER = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
 
 function BuySellButton(props) {
   const { isInvested, setIsInvested } = props;
@@ -29,14 +33,14 @@ function MoneyStats(props) {
         <Text display='inline'>Buy and Hold: </Text>
         <Text display='inline' variant='monospace' color='blue.400'
               fontWeight='800' fontSize='lg' minWidth='5em' align='right'>
-          ${buyAndHoldInvestment.toFixed(2)}
+          {MONEY_FORMATTER.format(buyAndHoldInvestment)}
         </Text>
       </Flex>
       <Flex justifyContent='space-between' gap='2'>
         <Text display='inline'>Your investment: </Text>
         <Text display='inline' variant='monospace' color='brand.400'
               fontWeight='800' fontSize='lg' minWidth='5em' align='right'>
-          ${userInvestment.toFixed(2)}
+          {MONEY_FORMATTER.format(userInvestment)}
         </Text>
       </Flex>
     </Flex>
