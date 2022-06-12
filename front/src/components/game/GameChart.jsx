@@ -102,6 +102,8 @@ function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
         },
       },
       y: {
+        suggestedMin: -10,
+        suggestedMax: 10,
         grid: {
           color: (context) => {
             return context.tick.value === 0 ? '#999' : 'rgba(0, 0, 0, 0.1)';
