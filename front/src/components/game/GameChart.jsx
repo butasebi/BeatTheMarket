@@ -36,13 +36,35 @@ function priceToRelativePercentGain(price, startPrice) {
   return ((price - startPrice) / startPrice * 100).toFixed(2);
 }
 
-function prepareRawData(rawData) {
+function prepareRawData(rawPriceData, rawInvestmentData) {
   const data = { datasets: [] };
+
+  // Price data
   data.datasets.push({
     label: 'Buy and Hold',
-    data: rawData.map(item => ({
+    data: rawPriceData.map(item => ({
       x: item.date,
-      y: priceToRelativePercentGain(item.price, rawData[0].price),
+      y: priceToRelativePercentGain(item.price, rawPriceData[0].price),
+    })),
+    fill: {
+      target: 'origin',
+      above: addAlphaToHex(customTheme.colors.blue['400'], 0.25),
+      below: addAlphaToHex(customTheme.colors.blue['400'], 0.25),
+    },
+    borderColor: customTheme.colors.blue['400'],
+    backgroundColor: customTheme.colors.blue['400'],
+    borderWidth: 2,
+    pointRadius: 0,
+    tension: 0.5,
+    pointHitRadius: 10,
+  });
+
+  // Investment data
+  data.datasets.push({
+    label: 'Your investment',
+    data: rawInvestmentData.map(item => ({
+      x: item.date,
+      y: priceToRelativePercentGain(item.price, rawInvestmentData[0].price),
     })),
     fill: {
       target: 'origin',
@@ -167,10 +189,10 @@ function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
 }
 
 function GameChart(props) {
-  const { rawData, dataTimeInterval, lastDate } = props;
+  const { rawPriceData, rawInvestmentData, dataTimeInterval, lastDate } = props;
 
-  const data = prepareRawData(rawData);
-  const options = getOptions(rawData[0].price, rawData[0].date,
+  const data = prepareRawData(rawPriceData, rawInvestmentData);
+  const options = getOptions(rawPriceData[0].price, rawPriceData[0].date,
     dataTimeInterval, lastDate);
 
   return (
