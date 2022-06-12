@@ -25,6 +25,7 @@ namespace CryptoGame.Controllers
         {
             try
             {
+                //Console.WriteLine("ceva");
                 await authenticationManager.Signup(model);
 
                 return Ok();

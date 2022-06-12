@@ -34,6 +34,7 @@ namespace CryptoGame.Managers
             var result = await userManager.CreateAsync(user, signupUserModel.Password);
             if (result.Succeeded)
             {
+                //Console.WriteLine("ceva1");
                 await userManager.AddToRoleAsync(user, signupUserModel.RoleId);
             }
 
