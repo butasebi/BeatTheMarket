@@ -140,8 +140,9 @@ export default function RegisterForm() {
                         </HStack>
                         <Field name='email' validate={validateEmail}>
                           {({ field, form }) => (
-                            <FormControl isInvalid={form.errors.email &&
-                              form.touched.email}>
+                            <FormControl isRequired
+                                         isInvalid={form.errors.email &&
+                                           form.touched.email}>
                               <FormLabel htmlFor='email'>Email</FormLabel>
                               <Input {...field} variant='filled' />
                               <FormErrorMessage>{form.errors.email}</FormErrorMessage>
@@ -150,8 +151,9 @@ export default function RegisterForm() {
                         </Field>
                         <Field name='password' validate={validatePassword}>
                           {({ field, form }) => (
-                            <FormControl isInvalid={form.errors.password &&
-                              form.touched.password}>
+                            <FormControl isRequired
+                                         isInvalid={form.errors.password &&
+                                           form.touched.password}>
                               <FormLabel htmlFor='password'>Password</FormLabel>
                               <InputGroup>
                                 <Input
