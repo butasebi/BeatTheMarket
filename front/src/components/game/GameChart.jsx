@@ -36,21 +36,47 @@ function priceToRelativePercentGain(price, startPrice) {
   return ((price - startPrice) / startPrice * 100).toFixed(2);
 }
 
-function prepareRawData(rawData) {
+function prepareRawData(rawPriceData, rawInvestmentData) {
   const data = { datasets: [] };
+
+  const AREA_OPACITY = 0.25;
+
+  // Price data
+  const PRICE_DATA_COLOR = customTheme.colors.blue['400'];
   data.datasets.push({
     label: 'Buy and Hold',
-    data: rawData.map(item => ({
+    data: rawPriceData.map(item => ({
       x: item.date,
-      y: priceToRelativePercentGain(item.price, rawData[0].price),
+      y: priceToRelativePercentGain(item.price, rawPriceData[0].price),
     })),
     fill: {
       target: 'origin',
-      above: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
-      below: addAlphaToHex(customTheme.colors.brand['400'], 0.25),
+      above: addAlphaToHex(PRICE_DATA_COLOR, AREA_OPACITY),
+      below: addAlphaToHex(PRICE_DATA_COLOR, AREA_OPACITY),
     },
-    borderColor: customTheme.colors.brand['400'],
-    backgroundColor: customTheme.colors.brand['400'],
+    borderColor: PRICE_DATA_COLOR,
+    backgroundColor: PRICE_DATA_COLOR,
+    borderWidth: 2,
+    pointRadius: 0,
+    tension: 0.5,
+    pointHitRadius: 10,
+  });
+
+  // Investment data
+  const INVESTMENT_DATA_COLOR = customTheme.colors.brand['400'];
+  data.datasets.push({
+    label: 'Your investment',
+    data: rawInvestmentData.map(item => ({
+      x: item.date,
+      y: priceToRelativePercentGain(item.price, rawInvestmentData[0].price),
+    })),
+    fill: {
+      target: 'origin',
+      above: addAlphaToHex(INVESTMENT_DATA_COLOR, AREA_OPACITY),
+      below: addAlphaToHex(INVESTMENT_DATA_COLOR, AREA_OPACITY),
+    },
+    borderColor: INVESTMENT_DATA_COLOR,
+    backgroundColor: INVESTMENT_DATA_COLOR,
     borderWidth: 2,
     pointRadius: 0,
     tension: 0.5,
@@ -74,17 +100,19 @@ function getChartTimeUnit(dataTimeInterval) {
   }
 }
 
-function getOptions(startPrice, startDate, dataTimeInterval) {
+function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
 
   return {
     responsive: true,
+    animations: false,
     scales: {
       x: {
         type: 'time',
         time: {
           unit: timeUnit,
         },
+        suggestedMax: lastDate,
         title: {
           display: true,
           text: timeUnit[0].toUpperCase() + timeUnit.slice(1),
@@ -100,6 +128,8 @@ function getOptions(startPrice, startDate, dataTimeInterval) {
         },
       },
       y: {
+        suggestedMin: -10,
+        suggestedMax: 10,
         grid: {
           color: (context) => {
             return context.tick.value === 0 ? '#999' : 'rgba(0, 0, 0, 0.1)';
@@ -163,13 +193,11 @@ function getOptions(startPrice, startDate, dataTimeInterval) {
 }
 
 function GameChart(props) {
-  // Props
-  const rawData = props.rawData;
-  const dataTimeInterval = props.dataTimeInterval;
+  const { rawPriceData, rawInvestmentData, dataTimeInterval, lastDate } = props;
 
-  const data = prepareRawData(rawData);
-  const options = getOptions(rawData[0].price, rawData[0].date,
-    dataTimeInterval);
+  const data = prepareRawData(rawPriceData, rawInvestmentData);
+  const options = getOptions(rawPriceData[0].price, rawPriceData[0].date,
+    dataTimeInterval, lastDate);
 
   return (
     <Box maxWidth='55em' margin='auto'>
