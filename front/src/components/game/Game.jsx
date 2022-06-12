@@ -12,7 +12,7 @@ function BuySellButton(props) {
   };
 
   return (
-    <Button colorScheme='brand' width='4rem' ml='4.7rem' variant={variant}
+    <Button colorScheme='brand' width='14rem' ml='4.7rem' variant={variant}
             onClick={onClick}>
       {buttonText}
     </Button>
