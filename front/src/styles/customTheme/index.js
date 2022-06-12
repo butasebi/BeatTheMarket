@@ -3,12 +3,14 @@ import { mode } from '@chakra-ui/theme-tools';
 import colors from './colors';
 import fonts from './fonts';
 import Link from './components/Link';
+import Text from './components/Text';
 
 const customTheme = extendTheme({
   fonts,
   colors,
   components: {
     Link,
+    Text,
   },
   styles: {
     global: (props) => ({
