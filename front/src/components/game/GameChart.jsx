@@ -74,17 +74,19 @@ function getChartTimeUnit(dataTimeInterval) {
   }
 }
 
-function getOptions(startPrice, startDate, dataTimeInterval) {
+function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
 
   return {
     responsive: true,
+    animations: false,
     scales: {
       x: {
         type: 'time',
         time: {
           unit: timeUnit,
         },
+        suggestedMax: lastDate,
         title: {
           display: true,
           text: timeUnit[0].toUpperCase() + timeUnit.slice(1),
@@ -163,13 +165,11 @@ function getOptions(startPrice, startDate, dataTimeInterval) {
 }
 
 function GameChart(props) {
-  // Props
-  const rawData = props.rawData;
-  const dataTimeInterval = props.dataTimeInterval;
+  const { rawData, dataTimeInterval, lastDate } = props;
 
   const data = prepareRawData(rawData);
   const options = getOptions(rawData[0].price, rawData[0].date,
-    dataTimeInterval);
+    dataTimeInterval, lastDate);
 
   return (
     <Box maxWidth='55em' margin='auto'>
