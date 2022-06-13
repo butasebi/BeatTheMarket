@@ -18,6 +18,8 @@ import { DATASET_CATEGORIES, DATASETS } from '../../utils/constants';
 import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 import { Select } from 'chakra-react-select';
 import { generateStockData } from './dataGenerator';
+import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
+import LeaderboardButton from '../leaderboard/LeaderboardButton';
 
 function TimeFrameOptions(props) {
   const { setTimeFrameValueSlider } = props;
@@ -178,6 +180,10 @@ function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
       <Button colorScheme='brand' size='lg' mt={12} onClick={playHandleClick}>
         Play!
       </Button>
+      <Flex width='100%' gap={8} mt={8}>
+        <PlayingHistoryButton />
+        <LeaderboardButton />
+      </Flex>
     </Flex>
   );
 }
