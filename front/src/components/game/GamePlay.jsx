@@ -68,7 +68,7 @@ function MoneyStats(props) {
 
 }
 
-function GamePlay({ gameOptions }) {
+function GamePlay({ gameOptions, setIsPlaying, setIsGameOver }) {
   const { rawData, dataTimeInterval } = gameOptions;
   const lastDate = rawData[rawData.length - 1].date;
 
@@ -79,7 +79,10 @@ function GamePlay({ gameOptions }) {
   // Data to continuously add (for Buy and Hold and for investment)
   useEffect(() => {
     const interval = setInterval(() => {
+      // No more data to add, the end of the game was reached
       if (slicedData.length === rawData.length) {
+        setIsPlaying(false);
+        setIsGameOver(true);
         return;
       }
 

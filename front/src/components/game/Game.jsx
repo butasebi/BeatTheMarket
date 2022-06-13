@@ -18,7 +18,10 @@ function Game() {
           setIsPlaying={setIsPlaying}
         />}
       {(isPlaying || isGameOver) &&
-        <GamePlay gameOptions={gameOptions} />}
+        <GamePlay
+          gameOptions={gameOptions} setIsPlaying={setIsPlaying}
+          setIsGameOver={setIsGameOver}
+        />}
       {isGameOver && <GameOverOverlay />}
     </Box>
   );
