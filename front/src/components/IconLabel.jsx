@@ -1,10 +1,10 @@
 import { Box } from '@chakra-ui/react';
 
 function IconLabel(props) {
-  const { icon, label } = props;
+  const { icon, label, ...otherProps } = props;
 
   return (
-    <Box display='flex' gap='2' alignItems='center'>
+    <Box display='inline-flex' gap='2' alignItems='center' {...otherProps}>
       {icon} {label}
     </Box>
   );

@@ -97,3 +97,14 @@ export const DATASETS = [
   { label: 'Cryptocurrencies', options: CRYPTOCURRENCIES },
   { label: 'Stocks', options: STOCKS },
 ];
+
+export const DATAPOINTS_COUNT_BY_INTERVAL = {
+  'minute': 720,
+  'day': 365,
+  'week': 520,
+};
+
+export const MONEY_FORMATTER = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
