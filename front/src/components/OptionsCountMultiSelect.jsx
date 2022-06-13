@@ -2,9 +2,20 @@ import { chakraComponents, Select } from 'chakra-react-select';
 
 const ValueContainer = ({ children, ...props }) => {
   let [values, input] = children;
+
+  // Count the number of options (the data may be split into options groups)
+  let optionsCount = 0;
+  for (const option of input.props.options) {
+    if (option.options) {
+      optionsCount += option.options.length;
+    } else {
+      optionsCount += 1;
+    }
+  }
+
   if (Array.isArray(values)) {
     const plural = values.length === 1 ? '' : 's';
-    if (values.length < input.props.options.length) {
+    if (values.length < optionsCount) {
       values = `${values.length} option${plural} selected`;
     } else {
       values = 'All options selected';
@@ -23,7 +34,6 @@ function OptionsCountMultiSelect(props) {
   return (
     <Select
       isMulti
-      placeholder='Select some dataset categories...'
       closeMenuOnSelect={false}
       selectedOptionStyle='check'
       hideSelectedOptions={false}

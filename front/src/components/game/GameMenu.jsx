@@ -13,8 +13,13 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { DATASET_CATEGORIES } from '../../utils/constants';
-import { Select } from 'chakra-react-select';
+import {
+  CRYPTOCURRENCIES,
+  DATASET_CATEGORIES,
+  DATASETS,
+  INDEX_FUNDS,
+  STOCKS,
+} from '../../utils/constants';
 import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 
 function TimeFrameOptions(props) {
@@ -71,8 +76,9 @@ function RandomDatasetSelect() {
   return (
     <Box mt={12}>
       <Text fontSize='lg'>Included dataset categories:</Text>
-      <FormControl my={2}>
+      <FormControl mt={2}>
         <OptionsCountMultiSelect
+          placeholder='Select some dataset categories...'
           options={DATASET_CATEGORIES}
           defaultValue={DATASET_CATEGORIES}
         />
@@ -85,11 +91,13 @@ function SpecificDatasetSelect() {
   return (
     <Box mt={12}>
       <Text fontSize='lg'>Included datasets:</Text>
-      <Select placeholder='Select option' mt={2}>
-        <option value='option1'>Option 1</option>
-        <option value='option2'>Option 2</option>
-        <option value='option3'>Option 3</option>
-      </Select>
+      <FormControl mt={2}>
+        <OptionsCountMultiSelect
+          placeholder='Select some datasets...'
+          options={DATASETS}
+          defaultValue={[...INDEX_FUNDS, ...CRYPTOCURRENCIES, ...STOCKS]}
+        />
+      </FormControl>
     </Box>
   );
 }
