@@ -11,6 +11,8 @@ import { MONEY_FORMATTER } from '../../utils/constants';
 import BoldText from '../BoldText';
 import IconLabel from '../IconLabel';
 import { SiIntel } from 'react-icons/all';
+import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
+import LeaderboardButton from '../leaderboard/LeaderboardButton';
 
 function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
   const userVsHoldPercentDiff = ((userInvestment - buyAndHoldInvestment) /
@@ -60,12 +62,8 @@ function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
         </UnorderedList>
         <Button colorScheme='brand' mt={8} size='lg'>Back to menu</Button>
         <Flex width='100%' gap={8} mt={8}>
-          <Button width='100%' size='lg' colorScheme='brand' variant='outline'>
-            My plays
-          </Button>
-          <Button width='100%' size='lg' colorScheme='brand' variant='outline'>
-            Leaderboard
-          </Button>
+          <PlayingHistoryButton />
+          <LeaderboardButton />
         </Flex>
       </Flex>
     </Box>
