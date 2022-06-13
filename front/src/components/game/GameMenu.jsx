@@ -2,8 +2,8 @@ import {
   Box,
   Button,
   Flex,
+  FormControl,
   Heading,
-  Select,
   Slider,
   SliderFilledTrack,
   SliderMark,
@@ -13,6 +13,9 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useState } from 'react';
+import { DATASET_CATEGORIES } from '../../utils/constants';
+import { Select } from 'chakra-react-select';
+import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 
 function TimeFrameOptions(props) {
   const { setTimeFrameValueSlider } = props;
@@ -68,11 +71,12 @@ function RandomDatasetSelect() {
   return (
     <Box mt={12}>
       <Text fontSize='lg'>Included dataset categories:</Text>
-      <Select placeholder='Select option' mt={2}>
-        <option value='option1'>Option 1</option>
-        <option value='option2'>Option 2</option>
-        <option value='option3'>Option 3</option>
-      </Select>
+      <FormControl my={2}>
+        <OptionsCountMultiSelect
+          options={DATASET_CATEGORIES}
+          defaultValue={DATASET_CATEGORIES}
+        />
+      </FormControl>
     </Box>
   );
 }
