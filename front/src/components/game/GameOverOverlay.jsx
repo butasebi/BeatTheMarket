@@ -9,16 +9,28 @@ import {
 } from '@chakra-ui/react';
 import { MONEY_FORMATTER } from '../../utils/constants';
 import BoldText from '../BoldText';
-import IconLabel from '../IconLabel';
-import { SiIntel } from 'react-icons/all';
 import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
 import LeaderboardButton from '../leaderboard/LeaderboardButton';
+import { format } from 'date-fns';
 
-function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
+function GameOverOverlay(
+  { userInvestment, buyAndHoldInvestment, gameOptions },
+) {
   const userVsHoldPercentDiff = ((userInvestment - buyAndHoldInvestment) /
     buyAndHoldInvestment * 100);
   const didBeatTheMarket = userInvestment > buyAndHoldInvestment;
+
+  const FORMAT_A = 'MMM d, yyyy';
+  const FORMAT_B = 'MMM d, yyyy H:mmaaaa';
+  const formattedStartDate = (gameOptions.dataTimeInterval === 'minute') ?
+    format(gameOptions.startDate, FORMAT_B) :
+    format(gameOptions.startDate, FORMAT_A);
+  const formattedEndDate = (gameOptions.dataTimeInterval === 'minute') ?
+    format(gameOptions.endDate, FORMAT_B) :
+    format(gameOptions.endDate, FORMAT_A);
+
   const listItemProps = { mt: 4 };
+
   return (
     <Box
       position='absolute' top='-5' bottom='-2' left='-2' right='-6'
@@ -34,23 +46,24 @@ function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
         </Heading>
         <UnorderedList mt='6' gap='2' lineHeight={7}>
           <ListItem fontSize='lg'>
-            You just played the <BoldText>stock market</BoldText> from{' '}
-            <BoldText>May 12, 1995</BoldText> through <BoldText>May 11,
-            2005</BoldText>
+            You just played{' '}
+            the <BoldText>{gameOptions.datasetCategory} market</BoldText> from{' '}
+            <BoldText>{formattedStartDate}</BoldText> through <BoldText>{formattedEndDate}</BoldText>
           </ListItem>
           <ListItem fontSize='lg' {...listItemProps}>
-            The stock being played was <BoldText>
-            <IconLabel icon={<SiIntel />} label='Intel' />
+            The {gameOptions.datasetCategory} being played was <BoldText>
+            {gameOptions.datasetOption.label}
           </BoldText>
           </ListItem>
           <ListItem fontSize='lg' {...listItemProps}>
             Your investment grew to{' '}
-            <BoldText>{MONEY_FORMATTER.format(userInvestment)}</BoldText>{' '}
+            <BoldText>{MONEY_FORMATTER.format(userInvestment)}</BoldText>{', '}
             while the Buy and Hold strategy netted{' '}
             <BoldText>{MONEY_FORMATTER.format(buyAndHoldInvestment)}</BoldText>
           </ListItem>
           <ListItem fontSize='lg' {...listItemProps}>
-            You <BoldText>{didBeatTheMarket ? 'WON' : 'LOST'}</BoldText> to the
+            You {(didBeatTheMarket ? <BoldText>BEAT</BoldText> :
+            <BoldText>LOST</BoldText>)}{!didBeatTheMarket ? ' to' : ''} the
             market by{' '}
             <BoldText>{MONEY_FORMATTER.format(
               Math.abs(userInvestment - buyAndHoldInvestment))}</BoldText>{' '}

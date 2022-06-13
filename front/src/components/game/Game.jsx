@@ -36,6 +36,7 @@ function Game() {
         <GameOverOverlay
           userInvestment={userInvestment}
           buyAndHoldInvestment={buyAndHoldInvestment}
+          gameOptions={gameOptions}
         />
       }
     </Box>

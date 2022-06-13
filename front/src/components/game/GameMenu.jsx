@@ -17,9 +17,14 @@ import { useState } from 'react';
 import { DATASET_CATEGORIES, DATASETS } from '../../utils/constants';
 import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 import { Select } from 'chakra-react-select';
-import { generateStockData } from './dataGenerator';
 import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
 import LeaderboardButton from '../leaderboard/LeaderboardButton';
+import {
+  getData,
+  getDatasetCategory,
+  getRandomDatasetOption,
+  getRandomStartDate,
+} from './data';
 
 function TimeFrameOptions(props) {
   const { setTimeFrameValueSlider } = props;
@@ -134,19 +139,25 @@ function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
     const dataTimeInterval = (timeFrameValueSlider === 0) ? 'minute' :
       (timeFrameValueSlider === 1) ? 'day' : 'week';
 
-    let rawData;
-    if (isRandomDataset) {
-      // TODO
-      rawData = generateStockData(dataTimeInterval);
-    } else {
-      // TODO
-      rawData = generateStockData(dataTimeInterval);
-    }
-
     const gameOptions = {
       dataTimeInterval,
-      rawData,
     };
+    if (isRandomDataset) {
+      gameOptions.datasetOption = getRandomDatasetOption(
+        pickedDatasetCategories,
+      );
+    } else {
+      gameOptions.datasetOption = pickedDataset;
+    }
+
+    gameOptions.datasetCategory = getDatasetCategory(gameOptions.datasetOption);
+    gameOptions.startDate = getRandomStartDate(
+      gameOptions.datasetOption, gameOptions.dataTimeInterval,
+    );
+    gameOptions.rawData = getData(
+      pickedDataset, gameOptions.startDate, gameOptions.dataTimeInterval,
+    );
+    gameOptions.endDate = gameOptions.rawData.at(-1).date;
 
     setGameOptions(gameOptions);
     setIsMainMenu(false);
