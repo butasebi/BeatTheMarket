@@ -68,8 +68,8 @@ function MoneyStats(props) {
 
 }
 
-function GamePlay(props) {
-  const { rawData, dataTimeInterval } = props;
+function GamePlay({ gameOptions }) {
+  const { rawData, dataTimeInterval } = gameOptions;
   const lastDate = rawData[rawData.length - 1].date;
 
   const [isInvested, setIsInvested] = useState(true);

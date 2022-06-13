@@ -17,6 +17,7 @@ import { useState } from 'react';
 import { DATASET_CATEGORIES, DATASETS } from '../../utils/constants';
 import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 import { Select } from 'chakra-react-select';
+import { generateStockData } from './dataGenerator';
 
 function TimeFrameOptions(props) {
   const { setTimeFrameValueSlider } = props;
@@ -68,7 +69,13 @@ function RandomDataSwitch(props) {
   );
 }
 
-function RandomDatasetSelect() {
+function RandomDatasetSelect(
+  { pickedDatasetCategories, setPickedDatasetCategories },
+) {
+  const handleChange = (options) => {
+    setPickedDatasetCategories(options);
+  };
+
   return (
     <Box mt={12}>
       <Text fontSize='lg'>Included dataset categories:</Text>
@@ -76,14 +83,19 @@ function RandomDatasetSelect() {
         <OptionsCountMultiSelect
           placeholder='Select some dataset categories...'
           options={DATASET_CATEGORIES}
-          defaultValue={DATASET_CATEGORIES}
+          value={pickedDatasetCategories}
+          onChange={handleChange}
         />
       </FormControl>
     </Box>
   );
 }
 
-function SpecificDatasetSelect() {
+function SpecificDatasetSelect({ pickedDataset, setPickedDataset }) {
+  const handleChange = (option) => {
+    setPickedDataset(option);
+  };
+
   return (
     <Box mt={12}>
       <Text fontSize='lg'>Picked dataset:</Text>
@@ -92,17 +104,52 @@ function SpecificDatasetSelect() {
           hideSelectedOptions={false}
           placeholder='Select a dataset...'
           options={DATASETS}
+          value={pickedDataset}
+          onChange={handleChange}
         />
       </FormControl>
     </Box>
   );
 }
 
-function GameMenu() {
+function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
   const { colorMode } = useColorMode();
 
   const [timeFrameValueSlider, setTimeFrameValueSlider] = useState(1);
   const [isRandomDataset, setIsRandomDataset] = useState(true);
+  const [pickedDatasetCategories, setPickedDatasetCategories] = useState(
+    DATASET_CATEGORIES,
+  );
+  const [pickedDataset, setPickedDataset] = useState(null);
+
+  const playHandleClick = () => {
+    // The user didn't pick a value from the Select inputs
+    if ((isRandomDataset && pickedDatasetCategories.length === 0) ||
+      (!isRandomDataset && pickedDataset === null)) {
+      return;
+    }
+
+    const dataTimeInterval = (timeFrameValueSlider === 0) ? 'minute' :
+      (timeFrameValueSlider === 1) ? 'day' : 'week';
+
+    let rawData;
+    if (isRandomDataset) {
+      // TODO
+      rawData = generateStockData(dataTimeInterval);
+    } else {
+      // TODO
+      rawData = generateStockData(dataTimeInterval);
+    }
+
+    const gameOptions = {
+      dataTimeInterval,
+      rawData,
+    };
+
+    setGameOptions(gameOptions);
+    setIsMainMenu(false);
+    setIsPlaying(true);
+  };
 
   return (
     <Flex
@@ -120,8 +167,17 @@ function GameMenu() {
         setIsRandomDataset={setIsRandomDataset}
         isRandomDataset={isRandomDataset}
       />
-      {isRandomDataset ? <RandomDatasetSelect /> : <SpecificDatasetSelect />}
-      <Button colorScheme='brand' size='lg' mt={12}>Play!</Button>
+      {isRandomDataset ?
+        <RandomDatasetSelect
+          pickedDatasetCategories={pickedDatasetCategories}
+          setPickedDatasetCategories={setPickedDatasetCategories}
+        /> :
+        <SpecificDatasetSelect
+          pickedDataset={pickedDataset} setPickedDataset={setPickedDataset}
+        />}
+      <Button colorScheme='brand' size='lg' mt={12} onClick={playHandleClick}>
+        Play!
+      </Button>
     </Flex>
   );
 }
