@@ -1,4 +1,5 @@
 import {
+  AiOutlineBarChart,
   FaAmazon,
   FaEthereum,
   FaGoogle,
@@ -36,8 +37,14 @@ export const DATASET_CATEGORIES = [
 ];
 
 export const INDEX_FUNDS = [
-  { value: 'S&P 500', label: 'S&P 500' },
-  { value: 'NASDAQ-100', label: 'Nasdaq-100' },
+  {
+    value: 'S&P 500',
+    label: <IconLabel icon={<AiOutlineBarChart />} label='S&P 500' />,
+  },
+  {
+    value: 'NASDAQ-100',
+    label: <IconLabel icon={<AiOutlineBarChart />} label='Nasdaq-100' />,
+  },
 ];
 
 export const CRYPTOCURRENCIES = [
