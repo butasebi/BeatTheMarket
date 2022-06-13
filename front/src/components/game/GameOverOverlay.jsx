@@ -13,6 +13,8 @@ import IconLabel from '../IconLabel';
 import { SiIntel } from 'react-icons/all';
 
 function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
+  const userVsHoldPercentDiff = ((userInvestment - buyAndHoldInvestment) /
+    buyAndHoldInvestment * 100);
   const didBeatTheMarket = userInvestment > buyAndHoldInvestment;
   const listItemProps = { mt: 4 };
   return (
@@ -49,7 +51,11 @@ function GameOverOverlay({ userInvestment, buyAndHoldInvestment }) {
             You <BoldText>{didBeatTheMarket ? 'WON' : 'LOST'}</BoldText> to the
             market by{' '}
             <BoldText>{MONEY_FORMATTER.format(
-              Math.abs(userInvestment - buyAndHoldInvestment))}</BoldText>
+              Math.abs(userInvestment - buyAndHoldInvestment))}</BoldText>{' '}
+            (<BoldText>
+            {didBeatTheMarket ? '+' : '-'}{
+            (Math.abs(userVsHoldPercentDiff)).toFixed(2)}%
+          </BoldText>)
           </ListItem>
         </UnorderedList>
         <Button colorScheme='brand' mt={8} size='lg'>Back to menu</Button>
