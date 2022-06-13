@@ -27,14 +27,15 @@ function getNextDate(currentDate, timeInterval) {
   return newDate;
 }
 
-function generateStockData(timeInterval) {
+function generateStockData(timeInterval, startDate) {
   if (!VALID_TIME_INTERVALS.includes(timeInterval)) {
     throw new Error('The timeStep must be minute/day/week.');
   }
 
   const PRICE_VOLATILITY = 0.1;
+  const currentDate = new Date();
 
-  const startDate = generateRandomDate();
+  startDate = startDate ?? generateRandomDate();
   const startPrice = Math.random() * 100 + 40;
   const stockData = [{ date: startDate, price: startPrice }];
 
@@ -44,6 +45,10 @@ function generateStockData(timeInterval) {
     const changePercent = 2 * PRICE_VOLATILITY * (Math.random() - 0.48);
     const newPrice = prevData.price + prevData.price * changePercent;
     const newDate = getNextDate(prevData.date, timeInterval);
+
+    if (newDate > currentDate) {
+      break;
+    }
 
     stockData.push({ date: newDate, price: newPrice });
   }
