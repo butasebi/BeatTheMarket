@@ -1,5 +1,6 @@
 import { CRYPTOCURRENCIES, INDEX_FUNDS, STOCKS } from '../../utils/constants';
 import { generateStockData } from './dataGenerator';
+import { max, min } from 'date-fns';
 
 export function getRandomDatasetOption(pickedDatasetCategories) {
   let allDatasetOptions = [];
@@ -27,11 +28,34 @@ export function getDatasetCategory(datasetOption) {
 }
 
 export function getRandomStartDate(datasetOption, dataTimeInterval) {
-  // TODO - foloseste-te de start date-ul dataset-ului
-  return new Date();
+  const twoYearAgo = new Date(
+    new Date().setFullYear(new Date().getFullYear() - 2),
+  );
+  const twentyYearsAgo = new Date(
+    new Date().setFullYear(new Date().getFullYear() - 20),
+  );
+
+  let startDate;
+  const endDate = new Date();
+
+  if (dataTimeInterval === 'minute') {
+    startDate = max([twoYearAgo, datasetOption.startDate]);
+  } else {
+    startDate = max([twentyYearsAgo, datasetOption.startDate]);
+  }
+
+  // Generate 5 dates, get the minimum of them (such that the start date isn't
+  // too close to the present day)
+  const generatedDates = [];
+  for (let i = 0; i < 5; i++) {
+    generatedDates.push(new Date(startDate.getTime() + Math.random() *
+      (endDate.getTime() - startDate.getTime())));
+  }
+
+  return min(generatedDates);
 }
 
 export function getData(datasetOption, startDate, dataTimeInterval) {
   // TODO - foloseste API-ul
-  return generateStockData(dataTimeInterval);
+  return generateStockData(dataTimeInterval, startDate);
 }
