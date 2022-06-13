@@ -13,8 +13,25 @@ import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
 import LeaderboardButton from '../leaderboard/LeaderboardButton';
 import { format } from 'date-fns';
 
+function BackToMenuButton({ setIsMainMenu, setIsGameOver }) {
+  const handleClick = () => {
+    console.log(setIsMainMenu, setIsGameOver);
+    setIsMainMenu(true);
+    setIsGameOver(false);
+  };
+
+  return (
+    <Button colorScheme='brand' mt={8} size='lg' onClick={handleClick}>
+      Back to menu
+    </Button>
+  );
+}
+
 function GameOverOverlay(
-  { userInvestment, buyAndHoldInvestment, gameOptions },
+  {
+    userInvestment, buyAndHoldInvestment, gameOptions,
+    setIsGameOver, setIsMainMenu,
+  },
 ) {
   const userVsHoldPercentDiff = ((userInvestment - buyAndHoldInvestment) /
     buyAndHoldInvestment * 100);
@@ -51,7 +68,8 @@ function GameOverOverlay(
             <BoldText>{formattedStartDate}</BoldText> through <BoldText>{formattedEndDate}</BoldText>
           </ListItem>
           <ListItem fontSize='lg' {...listItemProps}>
-            The {gameOptions.datasetCategory} being played was <BoldText>
+            The {gameOptions.datasetCategory} being played was <BoldText
+            position='relative' top={1}>
             {gameOptions.datasetOption.label}
           </BoldText>
           </ListItem>
@@ -73,7 +91,9 @@ function GameOverOverlay(
           </BoldText>)
           </ListItem>
         </UnorderedList>
-        <Button colorScheme='brand' mt={8} size='lg'>Back to menu</Button>
+        <BackToMenuButton
+          setIsMainMenu={setIsMainMenu} setIsGameOver={setIsGameOver}
+        />
         <Flex width='100%' gap={8} mt={8}>
           <PlayingHistoryButton />
           <LeaderboardButton />

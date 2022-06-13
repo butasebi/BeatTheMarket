@@ -17,6 +17,8 @@ function Game() {
   // Game over
   const [isGameOver, setIsGameOver] = useState(false);
 
+  console.log(isMainMenu, isPlaying, isGameOver);
+
   return (
     <Box position='relative'>
       {isMainMenu &&
@@ -37,6 +39,7 @@ function Game() {
           userInvestment={userInvestment}
           buyAndHoldInvestment={buyAndHoldInvestment}
           gameOptions={gameOptions}
+          setIsMainMenu={setIsMainMenu} setIsGameOver={setIsGameOver}
         />
       }
     </Box>

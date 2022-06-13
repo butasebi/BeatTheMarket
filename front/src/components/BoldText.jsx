@@ -1,8 +1,8 @@
 import { Text } from '@chakra-ui/react';
 
-function BoldText({ children }) {
+function BoldText({ children, ...otherProps }) {
   return (
-    <Text display='inline' fontWeight='600'>
+    <Text display='inline' fontWeight='600' {...otherProps}>
       {children}
     </Text>
   );
