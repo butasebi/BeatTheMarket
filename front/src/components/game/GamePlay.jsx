@@ -12,12 +12,9 @@ import {
 } from '@chakra-ui/react';
 import GameChart from './GameChart';
 import { useEffect, useState } from 'react';
+import { MONEY_FORMATTER } from '../../utils/constants';
 
 const START_MONEY = 10000;
-const MONEY_FORMATTER = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-});
 
 function BuySellButton(props) {
   const { isInvested, setIsInvested } = props;
@@ -68,7 +65,13 @@ function MoneyStats(props) {
 
 }
 
-function GamePlay({ gameOptions, setIsPlaying, setIsGameOver }) {
+function GamePlay(
+  {
+    gameOptions, setIsPlaying, setIsGameOver,
+    userInvestment, setUserInvestment,
+    buyAndHoldInvestment, setBuyAndHoldInvestment,
+  },
+) {
   const { rawData, dataTimeInterval } = gameOptions;
   const lastDate = rawData[rawData.length - 1].date;
 
@@ -116,12 +119,12 @@ function GamePlay({ gameOptions, setIsPlaying, setIsGameOver }) {
 
   const buyAndHoldPercentageGain = (slicedData.at(-1).price -
     slicedData.at(0).price) / slicedData.at(0).price;
-  const buyAndHoldInvestment = START_MONEY + START_MONEY *
-    buyAndHoldPercentageGain;
+  setBuyAndHoldInvestment(START_MONEY + START_MONEY *
+    buyAndHoldPercentageGain);
 
   const userPercentageGain = (investmentData.at(-1).price -
     investmentData.at(0).price) / investmentData.at(0).price;
-  const userInvestment = START_MONEY + START_MONEY * userPercentageGain;
+  setUserInvestment(START_MONEY + START_MONEY * userPercentageGain);
 
   return (
     <Box>

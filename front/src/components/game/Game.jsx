@@ -5,13 +5,20 @@ import { Box } from '@chakra-ui/react';
 import GamePlay from './GamePlay';
 
 function Game() {
+  // Menu
   const [gameOptions, setGameOptions] = useState(null);
   const [isMainMenu, setIsMainMenu] = useState(true);
+
+  // Game
   const [isPlaying, setIsPlaying] = useState(false);
+  const [userInvestment, setUserInvestment] = useState();
+  const [buyAndHoldInvestment, setBuyAndHoldInvestment] = useState();
+
+  // Game over
   const [isGameOver, setIsGameOver] = useState(false);
 
   return (
-    <Box>
+    <Box position='relative'>
       {isMainMenu &&
         <GameMenu
           setGameOptions={setGameOptions} setIsMainMenu={setIsMainMenu}
@@ -20,9 +27,17 @@ function Game() {
       {(isPlaying || isGameOver) &&
         <GamePlay
           gameOptions={gameOptions} setIsPlaying={setIsPlaying}
+          userInvestment={userInvestment} setUserInvestment={setUserInvestment}
+          buyAndHoldInvestment={buyAndHoldInvestment}
+          setBuyAndHoldInvestment={setBuyAndHoldInvestment}
           setIsGameOver={setIsGameOver}
         />}
-      {isGameOver && <GameOverOverlay />}
+      {isGameOver &&
+        <GameOverOverlay
+          userInvestment={userInvestment}
+          buyAndHoldInvestment={buyAndHoldInvestment}
+        />
+      }
     </Box>
   );
 }

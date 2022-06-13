@@ -103,3 +103,8 @@ export const DATAPOINTS_COUNT_BY_INTERVAL = {
   'day': 365,
   'week': 520,
 };
+
+export const MONEY_FORMATTER = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+});
