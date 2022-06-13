@@ -11,6 +11,7 @@ import {
   SliderTrack,
   Switch,
   Text,
+  useColorMode,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { DATASET_CATEGORIES, DATASETS } from '../../utils/constants';
@@ -98,12 +99,17 @@ function SpecificDatasetSelect() {
 }
 
 function GameMenu() {
+  const { colorMode } = useColorMode();
+
   const [timeFrameValueSlider, setTimeFrameValueSlider] = useState(1);
   const [isRandomDataset, setIsRandomDataset] = useState(true);
 
   return (
-    <Flex maxWidth='32em' maxHeight='50em' margin='auto' direction='column'
-          bg='white' p={12} boxShadow='xl' rounded='xl'>
+    <Flex
+      maxWidth='32em' maxHeight='50em' margin='auto' direction='column'
+      p={12} boxShadow='xl' rounded='xl'
+      bg={colorMode === 'light' ? 'white' : '#2D3848'}
+    >
       <Heading>
         Welcome to{' '}
         <Text display='inline' variant='brand'>💰 Beat the Market 💰</Text>!
