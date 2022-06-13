@@ -46,7 +46,7 @@ function prepareRawData(rawPriceData, rawInvestmentData) {
   data.datasets.push({
     label: 'Buy and Hold',
     data: rawPriceData.map(item => ({
-      x: item.date,
+      x: new Date(item.date - rawPriceData[0].date),
       y: priceToRelativePercentGain(item.price, rawPriceData[0].price),
     })),
     fill: {
@@ -67,7 +67,7 @@ function prepareRawData(rawPriceData, rawInvestmentData) {
   data.datasets.push({
     label: 'Your investment',
     data: rawInvestmentData.map(item => ({
-      x: item.date,
+      x: new Date(item.date - rawPriceData[0].date),
       y: priceToRelativePercentGain(item.price, rawInvestmentData[0].price),
     })),
     fill: {
@@ -102,6 +102,8 @@ function getChartTimeUnit(dataTimeInterval) {
 
 function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
   const timeUnit = getChartTimeUnit(dataTimeInterval);
+  const normalizedStartDate = new Date(startDate - startDate);
+  const normalizedLastDate = new Date(lastDate - startDate);
 
   return {
     responsive: true,
@@ -112,7 +114,7 @@ function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
         time: {
           unit: timeUnit,
         },
-        suggestedMax: lastDate,
+        suggestedMax: normalizedLastDate,
         title: {
           display: true,
           text: timeUnit[0].toUpperCase() + timeUnit.slice(1),
@@ -165,7 +167,7 @@ function getOptions(startPrice, startDate, dataTimeInterval, lastDate) {
             const date = new Date(dateLabel.slice(0, -5));
 
             const dateDiff = intervalToDuration({
-              start: startDate,
+              start: normalizedStartDate,
               end: date,
             });
 
