@@ -29,11 +29,11 @@ function TimeFrameOptions(props) {
   return (
     <Box mt={12} mb={5}>
       <Text fontSize='lg'>Time frame:</Text>
-      <Box pl='5' pr='7'>
+      <Box pl='6' pr='7'>
         <Slider min={0} max={2} step={1} colorScheme='brand'
                 onChange={(val) => setTimeFrameValueSlider(val)}>
-          <SliderMark value={0} {...labelStyles} ml={-5}>
-            1 day
+          <SliderMark value={0} {...labelStyles} ml={-6}>
+            12 hours
           </SliderMark>
           <SliderMark value={1} {...labelStyles} ml={-7}>
             1 year
