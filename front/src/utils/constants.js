@@ -20,11 +20,8 @@ import {
   SiIntel,
   SiLitecoin,
   SiOracle,
-  SiSamsung,
-  SiSiemens,
   SiStellar,
   SiTesla,
-  SiVolvo,
   SiZoom,
 } from 'react-icons/all';
 import IconLabel from '../components/IconLabel';
@@ -40,56 +37,139 @@ export const INDEX_FUNDS = [
   {
     value: 'S&P 500',
     label: <IconLabel icon={<AiOutlineBarChart />} label='S&P 500' />,
+    startDate: new Date(1985, 0, 1),
   },
   {
     value: 'NASDAQ-100',
     label: <IconLabel icon={<AiOutlineBarChart />} label='Nasdaq-100' />,
+    startDate: new Date(2003, 0, 1),
   },
 ];
 
 export const CRYPTOCURRENCIES = [
-  { value: 'BTC', label: <IconLabel icon={<SiBitcoin />} label='Bitcoin' /> },
-  { value: 'ETH', label: <IconLabel icon={<FaEthereum />} label='Ethereum' /> },
-  { value: 'LTC', label: <IconLabel icon={<SiLitecoin />} label='Litecoin' /> },
-  { value: 'XLM', label: <IconLabel icon={<SiStellar />} label='Stellar' /> },
+  {
+    value: 'BTC',
+    label: <IconLabel icon={<SiBitcoin />} label='Bitcoin' />,
+    startDate: new Date(2010, 0, 1),
+  },
+  {
+    value: 'ETH',
+    label: <IconLabel icon={<FaEthereum />} label='Ethereum' />,
+    startDate: new Date(2016, 0, 1),
+  },
+  {
+    value: 'LTC',
+    label: <IconLabel icon={<SiLitecoin />} label='Litecoin' />,
+    startDate: new Date(2012, 0, 1),
+  },
+  {
+    value: 'XLM',
+    label: <IconLabel icon={<SiStellar />} label='Stellar' />,
+    startDate: new Date(2015, 0, 1),
+  },
 ];
 
 export const STOCKS = [
-  { value: 'ADBE', label: <IconLabel icon={<SiAdobe />} label='Adobe' /> },
-  { value: 'AAPL', label: <IconLabel icon={<SiApple />} label='Apple' /> },
-  { value: 'AMZN', label: <IconLabel icon={<FaAmazon />} label='Amazon' /> },
-  { value: 'AMD', label: <IconLabel icon={<SiAmd />} label='AMD' /> },
-  { value: 'CSCO', label: <IconLabel icon={<SiCisco />} label='CISCO' /> },
-  { value: 'DELL', label: <IconLabel icon={<SiDell />} label='DELL' /> },
-  { value: 'EA', label: <IconLabel icon={<SiEa />} label='Electronic Arts' /> },
-  { value: 'GOOGL', label: <IconLabel icon={<FaGoogle />} label='Google' /> },
-  { value: 'IBM', label: <IconLabel icon={<SiIbm />} label='IBM' /> },
-  { value: 'INTL', label: <IconLabel icon={<SiIntel />} label='Intel' /> },
+  {
+    value: 'ADBE',
+    label: <IconLabel icon={<SiAdobe />} label='Adobe' />,
+    startDate: new Date(1987, 0, 1),
+  },
+  {
+    value: 'AAPL',
+    label: <IconLabel icon={<SiApple />} label='Apple' />,
+    startDate: new Date(1981, 0, 1),
+  },
+  {
+    value: 'AMZN',
+    label: <IconLabel icon={<FaAmazon />} label='Amazon' />,
+    startDate: new Date(1998, 0, 1),
+  },
+  {
+    value: 'AMD',
+    label: <IconLabel icon={<SiAmd />} label='AMD' />,
+    startDate: new Date(1980, 0, 1),
+  },
+  {
+    value: 'CSCO',
+    label: <IconLabel icon={<SiCisco />} label='CISCO' />,
+    startDate: new Date(1991, 0, 1),
+  },
+  {
+    value: 'DELL',
+    label: <IconLabel icon={<SiDell />} label='DELL' />,
+    startDate: new Date(1989, 0, 1),
+  },
+  {
+    value: 'EA',
+    label: <IconLabel icon={<SiEa />} label='Electronic Arts' />,
+    startDate: new Date(1990, 0, 1),
+  },
+  {
+    value: 'GOOGL',
+    label: <IconLabel icon={<FaGoogle />} label='Google' />,
+    startDate: new Date(2005, 0, 1),
+  },
+  {
+    value: 'IBM',
+    label: <IconLabel icon={<SiIbm />} label='IBM' />,
+    startDate: new Date(1980, 0, 1),
+  },
+  {
+    value: 'INTL',
+    label: <IconLabel icon={<SiIntel />} label='Intel' />,
+    startDate: new Date(1980, 0, 1),
+  },
   {
     value: 'META',
     label: <IconLabel icon={<IconBrandMeta size={16} />} label='Meta' />,
+    startDate: new Date(2013, 0, 1),
   },
   {
     value: 'MSFT',
     label: <IconLabel icon={<FaMicrosoft />} label='Microsoft' />,
+    startDate: new Date(1987, 0, 1),
   },
   {
     value: 'NFLX',
     label: <IconLabel icon={<RiNetflixFill />} label='Netflix' />,
+    startDate: new Date(2003, 0, 1),
   },
-  { value: 'ORCL', label: <IconLabel icon={<SiOracle />} label='Oracle' /> },
-  { value: 'PYPL', label: <IconLabel icon={<FaPaypal />} label='PayPal' /> },
   {
-    value: '005930',
-    label: <IconLabel icon={<SiSamsung />} label='Samsung' />,
+    value: 'ORCL',
+    label: <IconLabel icon={<SiOracle />} label='Oracle' />,
+    startDate: new Date(1987, 0, 1),
   },
-  { value: 'SIE', label: <IconLabel icon={<SiSiemens />} label='Siemens' /> },
-  { value: 'SPOT', label: <IconLabel icon={<FaSpotify />} label='Spotify' /> },
-  { value: 'TSLA', label: <IconLabel icon={<SiTesla />} label='Tesla' /> },
-  { value: 'TWTR', label: <IconLabel icon={<FaTwitter />} label='Twitter' /> },
-  { value: 'UBER', label: <IconLabel icon={<FaUber />} label='Uber' /> },
-  { value: 'VOLV-B', label: <IconLabel icon={<SiVolvo />} label='Volvo' /> },
-  { value: 'ZM', label: <IconLabel icon={<SiZoom />} label='ZOOM' /> },
+  {
+    value: 'PYPL',
+    label: <IconLabel icon={<FaPaypal />} label='PayPal' />,
+    startDate: new Date(2003, 0, 1),
+  },
+  {
+    value: 'SPOT',
+    label: <IconLabel icon={<FaSpotify />} label='Spotify' />,
+    startDate: new Date(2019, 0, 1),
+  },
+  {
+    value: 'TSLA',
+    label: <IconLabel icon={<SiTesla />} label='Tesla' />,
+    startDate: new Date(2011, 0, 1),
+  },
+  {
+    value: 'TWTR',
+    label: <IconLabel icon={<FaTwitter />} label='Twitter' />,
+    startDate: new Date(2014, 0, 1),
+  },
+  {
+    value: 'UBER',
+    label: <IconLabel icon={<FaUber />} label='Uber' />,
+    startDate: new Date(2020, 0, 1),
+  },
+  {
+    value: 'ZM',
+    label: <IconLabel icon={<SiZoom />} label='ZOOM' />,
+    startDate: new Date(2019, 0, 1),
+  },
 ];
 
 export const DATASETS = [
