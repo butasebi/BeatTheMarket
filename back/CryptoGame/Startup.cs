@@ -75,8 +75,9 @@ namespace CryptoGame
             
             services.AddDbContext<CryptoGameContext>(options => options
             .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-            .UseSqlServer("Server=(localdb)\\ProjectModels;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-            
+            .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryptoGame.Migrations
 {
     [DbContext(typeof(CryptoGameContext))]
-    [Migration("20220613070523_initial")]
+    [Migration("20220613071254_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
