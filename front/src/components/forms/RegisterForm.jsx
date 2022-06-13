@@ -87,7 +87,7 @@ export default function RegisterForm() {
               my='4vh'
             >
               <VStack spacing={4} align={['flex-start', 'center']} w='full'>
-                <Heading>Register</Heading>
+                <Heading><Text variant='brand'>Register</Text></Heading>
                 <Text fontSize='md'>Create your account. It's free and only
                   takes a minute.</Text>
               </VStack>
@@ -117,8 +117,9 @@ export default function RegisterForm() {
                               <FormControl isRequired
                                            isInvalid={form.errors.firstName &&
                                              form.touched.firstName}>
-                                <FormLabel htmlFor='firstName'>First
-                                  Name</FormLabel>
+                                <FormLabel htmlFor='firstName'>
+                                  <Text display='inline' variant='brand'>First Name</Text>
+                                </FormLabel>
                                 <Input {...field} ref={initialRef}
                                        variant='filled' />
                                 <FormErrorMessage>{form.errors.firstName}</FormErrorMessage>
@@ -130,8 +131,9 @@ export default function RegisterForm() {
                               <FormControl isRequired
                                            isInvalid={form.errors.lastName &&
                                              form.touched.lastName}>
-                                <FormLabel htmlFor='lastName'>Last
-                                  Name</FormLabel>
+                                <FormLabel htmlFor='lastName'>
+                                  <Text display='inline' variant='brand'>Last Name</Text>
+                                </FormLabel>
                                 <Input {...field} variant='filled' />
                                 <FormErrorMessage>{form.errors.lastName}</FormErrorMessage>
                               </FormControl>
@@ -143,7 +145,9 @@ export default function RegisterForm() {
                             <FormControl isRequired
                                          isInvalid={form.errors.email &&
                                            form.touched.email}>
-                              <FormLabel htmlFor='email'>Email</FormLabel>
+                              <FormLabel htmlFor='email'>
+                                <Text display='inline' variant='brand'>Email Address</Text>
+                              </FormLabel>
                               <Input {...field} variant='filled' />
                               <FormErrorMessage>{form.errors.email}</FormErrorMessage>
                             </FormControl>
@@ -154,7 +158,9 @@ export default function RegisterForm() {
                             <FormControl isRequired
                                          isInvalid={form.errors.password &&
                                            form.touched.password}>
-                              <FormLabel htmlFor='password'>Password</FormLabel>
+                              <FormLabel htmlFor='password'>
+                                <Text display='inline' variant='brand'>Password</Text>
+                              </FormLabel>
                               <InputGroup>
                                 <Input
                                   {...field}
