@@ -14,6 +14,11 @@ export function getRandomDatasetOption(pickedDatasetCategories) {
     }
   }
   const randomIndex = Math.floor(Math.random() * allDatasetOptions.length);
+
+  // console.log("allDatasetOptions.length: " + allDatasetOptions.length);
+  // console.log("randomIndex: " + randomIndex);
+  // console.log("allDatasetOptions[randomIndex]: " + allDatasetOptions[randomIndex]);
+
   return allDatasetOptions[randomIndex];
 }
 
@@ -56,6 +61,55 @@ export function getRandomStartDate(datasetOption, dataTimeInterval) {
 }
 
 export function getData(datasetOption, startDate, dataTimeInterval) {
-  // TODO - foloseste API-ul
-  return generateStockData(dataTimeInterval, startDate);
+  // console.log("datasetOption: " + datasetOption);
+  // console.log("startDate: " + startDate);
+  // console.log("dataTimeInterval: " + dataTimeInterval);
+
+  let datasetType;
+
+  if (INDEX_FUNDS.includes(datasetOption)) {
+    datasetType = 'stock';
+  } else if (STOCKS.includes(datasetOption)) {
+    datasetType = 'stock';
+  } else if (CRYPTOCURRENCIES.includes(datasetOption)) {
+    datasetType = 'crypto';
+  } 
+
+  /*
+  console.log(datasetOption.value);
+  console.log(datasetType);
+  console.log(dataTimeInterval);
+  console.log(startDate.toISOString());
+  console.log(DATAPOINTS_COUNT_BY_INTERVAL[dataTimeInterval]);
+  */
+
+  const datasetSymbol = datasetOption.value.replace("&", "");
+  console.log(datasetSymbol);
+
+  var xhr = new XMLHttpRequest();
+  xhr.open(
+    "GET", 
+    'https://localhost:5001/api/Statistics/get-statistics?' +
+    'type=' + datasetType + '&' +
+    'symbol=' + datasetSymbol + '&' +
+    'time_unit=' + dataTimeInterval + '&' +
+    'time_start=' + startDate.toISOString() + '&' +
+    'time_end=2100-01-01&' +
+    'to_symbol=USD', false); 
+  xhr.send(); 
+  var status = xhr.status;
+  if (status !== 200){
+    return generateStockData(dataTimeInterval, startDate);
+  }
+
+  var data= JSON.parse(xhr.responseText);
+  
+  for (let i = 0; i < data.length; i++) {
+    data[i].date = Date.parse(data[i].date);
+  }
+
+  console.log(status);
+  console.log(data);
+  
+  return data;
 }
