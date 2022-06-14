@@ -1,4 +1,7 @@
 # Beat the Market
+
+<br/>
+
 ## Concept
 **Beat the Market** is a fun way to find out more and get a glimpse of what it takes to make a real-time investment in different *stocks*, *cryptocurrencies* and *index funds*, based on historical data about them. You can start by choosing your favourite category and an appropriate time frame ranging between *12 hours*, *1 year* and *10 years*.<br/>
 After finding out whether your buying/selling actions were inspired at a certain time and the result was either beating the market or not, you can check the public leaderboard to see other players' performance. By creating an account, you can also see your previous attempts on ✨beating the market✨.
@@ -173,6 +176,8 @@ Used coding standards:
 - Typical naming conventions for React and ASP.NET apps (PascalCase for component names, camelCase for non-components, attributes, inline styles)
 - Easy to follow project structure - using directories such as components/, pages/, styles/, utils/
 - Splitting the code into multiple files instead of writing a big file
+
+<br/>
 
 ## Automated Testing
 TODO
