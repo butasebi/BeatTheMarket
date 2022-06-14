@@ -14,8 +14,6 @@ namespace CryptoGame.Entities
 
         public string Currency { get; set; }
 
-        public string Placement { get; set; }
-
         public DateTime RegisterDay { get; set; }   //TODO: currency ranking
 
     }

@@ -1,4 +1,6 @@
 using CryptoGame.Entities;
+using CryptoGame.Managers;
+using CryptoGame.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -77,7 +79,8 @@ namespace CryptoGame
             .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
             .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
-
+            services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
+            services.AddTransient<ILeaderboardManager, LeaderboardManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
