@@ -26,7 +26,7 @@ namespace CryptoGame.Controllers
             return Ok();
         }
 
-        [HttpGet("Leaderboard data for a certain currency")]
+        [HttpGet("leaderboard/byCurrency/{currency}")]
         public async Task<IActionResult> GetLeaderboard(string currency)
         {
             var leaderboard = manager.GetLeaderboard(currency);
@@ -34,7 +34,7 @@ namespace CryptoGame.Controllers
             return Ok(leaderboard);
         }
 
-        [HttpGet("Get Leaderboard registry by Id")]
+        [HttpGet("leaderboard/byId/{id}")]
         public async Task<IActionResult> GetLeaderboardById(string id)
         {
             var leaderboard = manager.GetLeaderboardById(id);

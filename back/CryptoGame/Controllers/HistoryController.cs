@@ -26,7 +26,7 @@ namespace CryptoGame.Controllers
             return Ok();
         }
 
-        [HttpGet("History data for a certain user")]
+        [HttpGet("history/byUserId/{UserId}")]
         public async Task<IActionResult> GetHistory(string UserId)
         {
             var history = manager.GetHistory(UserId);
@@ -34,10 +34,10 @@ namespace CryptoGame.Controllers
             return Ok(history);
         }
 
-        [HttpGet("Get History registry by Id")]
-        public async Task<IActionResult> GetHistoryById(string id)
+        [HttpGet("history/byId/{Id}")]
+        public async Task<IActionResult> GetHistoryById(string Id)
         {
-            var history = manager.GetHistoryById(id);
+            var history = manager.GetHistoryById(Id);
 
             return Ok(history);
         }

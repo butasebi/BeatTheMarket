@@ -22,18 +22,16 @@ namespace CryptoGame.Repositories
 
         public IQueryable<History> GetHistory(string UserId)
         {
-            var history = from Histories in db.Histories
-                          where Histories.UserId == UserId
-                          select Histories;
+            var history = db.Histories
+                          .Where(x => x.UserId == UserId);
 
             return history;
         }
 
         public IQueryable<History> GetHistoryById(string Id)
         {
-            var history = from Histories in db.Histories
-                          where Histories.Id == Id
-                          select Histories;
+            var history = db.Histories
+                          .Where(x => x.Id == Id);
 
             return history;
         }
