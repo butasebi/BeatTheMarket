@@ -2,7 +2,7 @@
 
 namespace CryptoGame.Migrations
 {
-    public partial class miggggg : Migration
+    public partial class MigrationCapybara1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

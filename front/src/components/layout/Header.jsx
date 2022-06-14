@@ -5,7 +5,6 @@ import LoginForm from '../forms/LoginForm';
 
 function Header() {
   return (
-
     <Box>
       <Flex as='header' align='center' padding='8' w='full'>
         <Image 
@@ -19,8 +18,14 @@ function Header() {
           <Link href='/'>Beat the Market</Link>
         </Heading>
         <Spacer />
-        <LoginForm />
-        <RegisterForm />
+        {/* {isLoggedIn ? 
+          <> */}
+          <LoginForm />
+          <RegisterForm />
+          {/* </>
+          :
+          null
+        } */}
         <Flex marginLeft='auto'>
           <ColorModeSwitcher />
         </Flex>

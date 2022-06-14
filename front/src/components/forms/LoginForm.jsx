@@ -17,14 +17,16 @@ import {
   Text,
   useDisclosure,
   VStack,
+  useToast
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 
 // TODO Forgot Password?
 // TODO Remember me
-export default function RegisterForm() {
+export default function LoginForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
+  const toast = useToast();
 
   return (
     <><Button
@@ -69,6 +71,15 @@ export default function RegisterForm() {
                       fetch("https://localhost:5001/api/Authentication/login",
                       {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})});
                       actions.setSubmitting(false);
+                      toast({
+                        // TODO color?
+                        title: 'Login successful',
+                        description: 'Welcome!',
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true
+                      })
+                      onClose()
                     }, 1000);
                   }}
                 >

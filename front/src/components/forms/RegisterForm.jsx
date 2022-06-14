@@ -21,6 +21,7 @@ import {
   Text,
   useDisclosure,
   VStack,
+  useToast
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 
@@ -60,6 +61,8 @@ export default function RegisterForm() {
 
     return error;
   }
+
+  const toast = useToast()
 
   return (
     <><Button
@@ -108,6 +111,14 @@ export default function RegisterForm() {
                       fetch("https://localhost:5001/api/Authentication/sign-up",
                       {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"firstName": values.firstName,"lastName": values.lastName, "email":values.email,"password":values.password , "roleId":"BasicUser"})});
                       actions.setSubmitting(false);
+                      toast({
+                        title: 'Account created',
+                        description: 'We have created your account for you',
+                        status: 'success',
+                        duration: 3000,
+                        isClosable: true
+                      })
+                      onClose()
                     }, 1000);
                   }}
                 >
