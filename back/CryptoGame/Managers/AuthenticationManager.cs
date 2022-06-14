@@ -28,7 +28,9 @@ namespace CryptoGame.Managers
             var user = new User
             {
                 Email = signupUserModel.Email,
-                UserName = signupUserModel.Email
+                UserName = signupUserModel.FirstName + signupUserModel.LastName
+            //UserName = signupUserModel.FirstName + " " + signupUserModel.LastName
+                
             };
 
             var result = await userManager.CreateAsync(user, signupUserModel.Password);
