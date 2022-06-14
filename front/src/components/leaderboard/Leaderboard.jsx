@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 import { 
   Button, 
   Text, 
@@ -9,39 +9,39 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
-  Box,
-  FormControl
+  // Box,
+  // FormControl
 } from '@chakra-ui/react';
-import { Select } from 'chakra-react-select';
+// import { Select } from 'chakra-react-select';
 import { RiBarChartFill } from 'react-icons/all';
-import { DATASETS } from '../../utils/constants';
+// import { DATASETS } from '../../utils/constants';
 import LeaderboardTable from './LeaderboardTable';
 
 export default function Leaderboard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  function SpecificDatasetSelect({ pickedDataset, setPickedDataset }) {
-    const handleChange = (option) => {
-      setPickedDataset(option);
-    };
+  // function SpecificDatasetSelect({ pickedDataset, setPickedDataset }) {
+  //   const handleChange = (option) => {
+  //     setPickedDataset(option);
+  //   };
   
-    return (
-      <Box mt='6vh' mb='2vh' mx='2vh'>
-        <Text fontSize='lg'>Picked dataset:</Text>
-        <FormControl mt={2}>
-          <Select
-            hideSelectedOptions={false}
-            placeholder='Select a dataset...'
-            options={DATASETS}
-            value={pickedDataset}
-            onChange={handleChange}
-          />
-        </FormControl>
-      </Box>
-    );
-  }
+  //   return (
+  //     <Box mt='6vh' mb='2vh' mx='2vh'>
+  //       <Text fontSize='lg'>Picked dataset:</Text>
+  //       <FormControl mt={2}>
+  //         <Select
+  //           hideSelectedOptions={false}
+  //           placeholder='Select a dataset...'
+  //           options={DATASETS}
+  //           value={pickedDataset}
+  //           onChange={handleChange}
+  //         />
+  //       </FormControl>
+  //     </Box>
+  //   );
+  // }
   
-  const [pickedDataset, setPickedDataset] = useState(null);
+  // const [pickedDataset, setPickedDataset] = useState(null);
 
   return (
     <><Button width='100%' 
@@ -74,7 +74,7 @@ export default function Leaderboard() {
           /> */}
         </DrawerHeader>
         <DrawerBody>
-          <LeaderboardTable dataset={pickedDataset}/>
+          <LeaderboardTable />
         </DrawerBody>
       </DrawerContent>
     </Drawer></>

@@ -103,6 +103,7 @@ export default function RegisterForm() {
                   }}
                   onSubmit={(values, actions) => {
                     setTimeout(() => {
+                      // TODO link with the backend
                       alert(JSON.stringify(values, null, 2));
                       actions.setSubmitting(false);
                     }, 1000);

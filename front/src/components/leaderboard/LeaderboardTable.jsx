@@ -61,7 +61,7 @@ export default function LeaderboardTable() {
             return (
               <Tr 
                 {...row.getRowProps()}
-                color={count === 1 ? 'gold' : (count == 2 ? 'silver' : (count == 3 ? '#CD7F32' : null))}
+                color={count === 1 ? 'gold' : (count === 2 ? 'silver' : (count === 3 ? '#CD7F32' : null))}
               >
                 {row.cells.map((cell) => (
                   <Td 
