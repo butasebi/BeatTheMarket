@@ -20,7 +20,7 @@ Params:
 - to_symbol : string (optional - it is set be default to "USD")
 
 Return:
-- list of ["date" : DateTime, "price": double] sorted asc by date
+- list of {"date" : DateTime, "price": double} sorted asc by date
 
 Obs:
 - for minute it will provide info from the last few days
