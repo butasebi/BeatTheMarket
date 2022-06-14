@@ -36,6 +36,7 @@ namespace CryptoGame.Controllers
             }
         }
 
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginUserModel model)
         {

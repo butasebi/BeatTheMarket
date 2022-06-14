@@ -27,6 +27,8 @@ namespace CryptoGame.Managers
         {
             var user = new User
             {
+                FirstName = signupUserModel.FirstName,
+                LastName = signupUserModel.LastName,
                 Email = signupUserModel.Email,
                 UserName = signupUserModel.Email
             };
@@ -37,6 +39,7 @@ namespace CryptoGame.Managers
                 //Console.WriteLine("ceva1");
                 await userManager.AddToRoleAsync(user, signupUserModel.RoleId);
             }
+            
 
         }
 
