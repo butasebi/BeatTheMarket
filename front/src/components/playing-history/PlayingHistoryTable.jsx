@@ -32,7 +32,7 @@ export default function PlayingHistoryTable() {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = useTable({ columns, data }, useSortBy)
 
   return (
-    <TableContainer mt='4vh'>
+    <TableContainer>
       <Table variant='simple' {...getTableProps}>
         <Thead>
           {headerGroups.map((headerGroup) => (

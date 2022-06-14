@@ -41,7 +41,7 @@ export default function PlayingHistory() {
         <DrawerContent>
           <DrawerCloseButton />
           <DrawerHeader>
-            <Text mt='4vh' align='center' fontSize='3xl' variant='brand'>Play History</Text>
+            <Text mt='4vh' mb='6vh' align='center' fontSize='3xl' variant='brand'>Play History</Text>
           </DrawerHeader>
           <DrawerBody>
             <PlayingHistoryTable />
