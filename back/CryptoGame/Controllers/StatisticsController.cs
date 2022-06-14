@@ -14,7 +14,7 @@ API:
 Params:
 - type : "stock" / "crypto" (any other string will return BadRequest)
 - symbol : string
-- time_unit : "min" / "day" / "week" (any other string will return BadRequest) 
+- time_unit : "minute" / "day" / "week" (any other string will return BadRequest) 
 - time_start : DateTime (ex: 2010-01-01)
 - time_end : DateTime (ex: 2019-01-02T00:00:00)
 - to_symbol : string (optional - it is set be default to "USD")

@@ -23,7 +23,7 @@ namespace CryptoGame.Managers
             {
                 symbol = "VCNIX";
             }
-            else if (symbol == "S&P 500")
+            else if (symbol == "SP 500")
             {
                 symbol = "500.PAR";
             }
@@ -36,7 +36,7 @@ namespace CryptoGame.Managers
 
             if (type == "stock")
             {
-                if (time_unit == "min")
+                if (time_unit == "minute")
                 {
                     string function = "TIME_SERIES_INTRADAY";
                     string interval = "1min";
@@ -61,12 +61,12 @@ namespace CryptoGame.Managers
                 }
                 else
                 {
-                    throw new Exception("Time unit should be 'min', 'day' or 'week'");
+                    throw new Exception("Time unit should be 'minute', 'day' or 'week'");
                 }
             }
             else if (type == "crypto")
             {
-                if (time_unit == "min")
+                if (time_unit == "minute")
                 {
                     string function = "CRYPTO_INTRADAY";
                     string interval = "1min";
@@ -91,16 +91,41 @@ namespace CryptoGame.Managers
                 }
                 else
                 {
-                    throw new Exception("Time unit should be 'min', 'day' or 'week'");
+                    throw new Exception("Time unit should be 'minute', 'day' or 'week'");
                 }
             }
             else
             {
-                throw new Exception("Type should be of type 'stock' or 'crypto");
+                throw new Exception("Type should be of type 'stock' or 'crypto'");
             }
 
             ret = ret.FindAll(statistics => statistics.Date >= time_start && statistics.Date <= time_end);
             ret.Sort((statistics1, statistics2) => statistics1.Date.CompareTo(statistics2.Date));
+
+            if (time_unit == "minute")
+            {
+                if (ret.Count < 720)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(720).ToList();
+            }
+            else if (time_unit == "day")
+            {
+                if (ret.Count < 365)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(365).ToList();
+            }
+            else if (time_unit == "week")
+            {
+                if (ret.Count < 520)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(520).ToList();
+            }
 
             return ret;
         }
