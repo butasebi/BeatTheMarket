@@ -81,6 +81,9 @@ namespace CryptoGame
 
             services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
             services.AddTransient<ILeaderboardManager, LeaderboardManager>();
+
+            services.AddTransient<IHistoryRepository, HistoryRepository>();
+            services.AddTransient<IHistoryManager, HistoryManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

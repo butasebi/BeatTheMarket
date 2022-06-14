@@ -8,9 +8,9 @@ namespace CryptoGame.Repositories
     {
         private readonly CryptoGameContext db;
 
-        public LeaderboardRepository(CryptoGameContext proiectDAWContext)
+        public LeaderboardRepository(CryptoGameContext CryptoGameContext)
         {
-            this.db = proiectDAWContext;
+            this.db = CryptoGameContext;
         }
 
         public async Task AddRecord(Leaderboard leaderboard)
