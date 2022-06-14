@@ -107,7 +107,8 @@ export default function RegisterForm() {
                     setTimeout(() => {
                       fetch("https://localhost:5001/api/Authentication/sign-up",
                       {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"firstName": values.firstName,"lastName": values.lastName, "email":values.email,"password":values.password , "roleId":"BasicUser"})});
-                      //fetch(JSON.stringify(values, null, 2));
+                      // TODO link with the backend
+                      alert(JSON.stringify(values, null, 2));
                       actions.setSubmitting(false);
                     }, 1000);
                   }}
