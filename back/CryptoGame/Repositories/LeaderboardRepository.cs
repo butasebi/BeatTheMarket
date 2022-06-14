@@ -6,11 +6,11 @@ namespace CryptoGame.Repositories
 {
     public class LeaderboardRepository : ILeaderboardRepository
     {
-        private readonly CryptoGameContext db;
+        private readonly ProjectContext db;
 
-        public LeaderboardRepository(CryptoGameContext CryptoGameContext)
+        public LeaderboardRepository(ProjectContext ProjectContext)
         {
-            this.db = CryptoGameContext;
+            this.db = ProjectContext;
         }
 
         public async Task AddRecord(Leaderboard leaderboard)

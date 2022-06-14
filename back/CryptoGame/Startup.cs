@@ -122,6 +122,12 @@ namespace CryptoGame
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
             services.AddTransient<ITokenManager, TokenManager>();
 
+            services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
+            services.AddTransient<ILeaderboardManager, LeaderboardManager>();
+
+            services.AddTransient<IHistoryRepository, HistoryRepository>();
+            services.AddTransient<IHistoryManager, HistoryManager>();
+
 
         }
 

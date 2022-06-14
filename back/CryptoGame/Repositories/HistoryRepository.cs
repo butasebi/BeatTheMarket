@@ -6,11 +6,11 @@ namespace CryptoGame.Repositories
 {
     public class HistoryRepository : IHistoryRepository
     {
-        private readonly CryptoGameContext db;
+        private readonly ProjectContext db;
 
-        public HistoryRepository(CryptoGameContext CryptoGameContext)
+        public HistoryRepository(ProjectContext ProjectContext)
         {
-            this.db = CryptoGameContext;
+            this.db = ProjectContext;
         }
 
         public async Task AddRecord(History history)

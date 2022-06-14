@@ -13,14 +13,10 @@ namespace CryptoGame.Entities
        UserRole, IdentityUserLogin<string>, IdentityRoleClaim<string>, IdentityUserToken<string>>
     {
 
+        public DbSet<Leaderboard> Leaderboard { get; set; }
+        public DbSet<History> Histories { get; set; }
         public ProjectContext(DbContextOptions<ProjectContext> options) : base(options) { }
 
-        /**protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder
-                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-                .UseSqlServer("Server=(localdb)\\ProjectsV13;Initial Catalog=Items;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-        }**/
         protected override void OnModelCreating(ModelBuilder builder)
         {
 

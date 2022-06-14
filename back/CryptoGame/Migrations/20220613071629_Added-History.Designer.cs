@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CryptoGame.Migrations
 {
-    [DbContext(typeof(CryptoGameContext))]
+    [DbContext(typeof(ProjectContext))]
     [Migration("20220613071629_Added-History")]
     partial class AddedHistory
     {

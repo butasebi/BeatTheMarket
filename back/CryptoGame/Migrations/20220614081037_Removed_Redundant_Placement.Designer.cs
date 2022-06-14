@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CryptoGame.Migrations
 {
-    [DbContext(typeof(CryptoGameContext))]
+    [DbContext(typeof(ProjectContext))]
     [Migration("20220614081037_Removed_Redundant_Placement")]
     partial class Removed_Redundant_Placement
     {
