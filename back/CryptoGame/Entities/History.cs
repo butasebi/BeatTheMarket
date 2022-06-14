@@ -6,6 +6,8 @@ namespace CryptoGame.Entities
     {
         public string Id { get; set; }
 
+        public string UserId { get; set; }
+
         public string Score { get; set; }
 
         public string Currency { get; set; }
