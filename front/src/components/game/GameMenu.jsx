@@ -17,8 +17,8 @@ import { useState } from 'react';
 import { DATASET_CATEGORIES, DATASETS } from '../../utils/constants';
 import OptionsCountMultiSelect from '../OptionsCountMultiSelect';
 import { Select } from 'chakra-react-select';
-import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
-import LeaderboardButton from '../leaderboard/LeaderboardButton';
+import PlayingHistory from '../playing-history/PlayingHistory';
+import Leaderboard from '../leaderboard/Leaderboard';
 import {
   getData,
   getDatasetCategory,
@@ -192,8 +192,8 @@ function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
         Play!
       </Button>
       <Flex width='100%' gap={8} mt={8}>
-        <PlayingHistoryButton />
-        <LeaderboardButton />
+        <PlayingHistory />
+        <Leaderboard />
       </Flex>
     </Flex>
   );

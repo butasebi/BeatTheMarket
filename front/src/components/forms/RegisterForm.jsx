@@ -181,15 +181,6 @@ export default function RegisterForm() {
                             </FormControl>
                           )}
                         </Field>
-                        {/* <Field name='confirmPassword'>
-                        {({field, form}) => (
-                          <FormControl isRequired isInvalid={form.errors.name && form.touched.name}>
-                            <FormLabel>Confirm Password</FormLabel>
-                            <Input {...field} variant='filled' type='password' />
-                            <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                          </FormControl>
-                        )}
-                      </Field> */}
                       </VStack>
 
                       <Box mt='2vh' mb='1vh' align='left'>

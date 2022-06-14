@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { MONEY_FORMATTER } from '../../utils/constants';
 import BoldText from '../BoldText';
-import PlayingHistoryButton from '../playing-history/PlayingHistoryButton';
-import LeaderboardButton from '../leaderboard/LeaderboardButton';
+import PlayingHistory from '../playing-history/PlayingHistory';
+import Leaderboard from '../leaderboard/Leaderboard';
 import { format } from 'date-fns';
 
 function BackToMenuButton({ setIsMainMenu, setIsGameOver }) {
@@ -95,8 +95,8 @@ function GameOverOverlay(
           setIsMainMenu={setIsMainMenu} setIsGameOver={setIsGameOver}
         />
         <Flex width='100%' gap={8} mt={8}>
-          <PlayingHistoryButton />
-          <LeaderboardButton />
+          <PlayingHistory />
+          <Leaderboard />
         </Flex>
       </Flex>
     </Box>
