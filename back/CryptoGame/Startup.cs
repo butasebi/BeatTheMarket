@@ -49,7 +49,6 @@ namespace CryptoGame
                     Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
                       Enter 'Bearer' [space] and then your token in the text input below.
                       \r\n\r\nExample: 'Bearer 12345abcdef'",
-
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
@@ -76,8 +75,8 @@ namespace CryptoGame
             });
             
             services.AddDbContext<CryptoGameContext>(options => options
-            .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-            .UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+                .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
+                .UseSqlServer("Server = (localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
             services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
             services.AddTransient<ILeaderboardManager, LeaderboardManager>();
