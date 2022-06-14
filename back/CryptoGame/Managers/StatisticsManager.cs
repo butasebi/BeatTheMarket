@@ -36,7 +36,7 @@ namespace CryptoGame.Managers
 
             if (type == "stock")
             {
-                if (time_unit == "min")
+                if (time_unit == "minute")
                 {
                     string function = "TIME_SERIES_INTRADAY";
                     string interval = "1min";
@@ -61,12 +61,12 @@ namespace CryptoGame.Managers
                 }
                 else
                 {
-                    throw new Exception("Time unit should be 'min', 'day' or 'week'");
+                    throw new Exception("Time unit should be 'minute', 'day' or 'week'");
                 }
             }
             else if (type == "crypto")
             {
-                if (time_unit == "min")
+                if (time_unit == "minute")
                 {
                     string function = "CRYPTO_INTRADAY";
                     string interval = "1min";
@@ -91,7 +91,7 @@ namespace CryptoGame.Managers
                 }
                 else
                 {
-                    throw new Exception("Time unit should be 'min', 'day' or 'week'");
+                    throw new Exception("Time unit should be 'minute', 'day' or 'week'");
                 }
             }
             else
