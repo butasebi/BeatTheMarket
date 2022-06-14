@@ -56,7 +56,7 @@ export default function RegisterForm() {
               my='4vh'
             >
               <VStack spacing={4} align={['flex-start', 'center']} w='full'>
-                <Heading>Login</Heading>
+                <Heading><Text variant='brand'>Login</Text></Heading>
                 <Text fontSize='md'>Enter your email and password to
                   login.</Text>
               </VStack>
@@ -79,7 +79,9 @@ export default function RegisterForm() {
                             <FormControl isRequired
                                          isInvalid={form.errors.name &&
                                            form.touched.name}>
-                              <FormLabel>Email Address</FormLabel>
+                              <FormLabel>
+                                <Text display='inline' variant='brand'>Email Address</Text>
+                              </FormLabel>
                               <Input {...field} ref={initialRef}
                                      variant='filled' />
                               <FormErrorMessage>{form.errors.name}</FormErrorMessage>
@@ -91,7 +93,9 @@ export default function RegisterForm() {
                             <FormControl isRequired
                                          isInvalid={form.errors.name &&
                                            form.touched.name}>
-                              <FormLabel>Password</FormLabel>
+                              <FormLabel>
+                                <Text display='inline' variant='brand'>Password</Text>
+                              </FormLabel>
                               <Input {...field} variant='filled'
                                      type='password' />
                               <FormErrorMessage>{form.errors.name}</FormErrorMessage>
