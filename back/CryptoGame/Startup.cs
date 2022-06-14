@@ -117,7 +117,7 @@ namespace CryptoGame
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
-
+                
 
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
             services.AddTransient<ITokenManager, TokenManager>();
