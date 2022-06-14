@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CryptoGame.Controllers
 {
@@ -38,6 +39,7 @@ namespace CryptoGame.Controllers
 
 
         [HttpPost("login")]
+        //[Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> Login([FromBody] LoginUserModel model)
         {
             try
