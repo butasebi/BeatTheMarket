@@ -8,6 +8,8 @@ namespace CryptoGame.Entities
 
         public string Score { get; set; }
 
+        public string Currency { get; set; }
+
         public DateTime RegisterDay { get; set; }
     }
 }

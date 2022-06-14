@@ -4,14 +4,16 @@ using CryptoGame.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CryptoGame.Migrations
 {
     [DbContext(typeof(CryptoGameContext))]
-    partial class CryptoGameContextModelSnapshot : ModelSnapshot
+    [Migration("20220614072421_Added_Currency_To_History")]
+    partial class Added_Currency_To_History
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
