@@ -27,6 +27,8 @@ import { Field, Form, Formik } from 'formik';
 // TODO Terms of Use and Privacy Policy?
 // TODO create account recommendation
 // TODO confirmation mail
+
+
 export default function RegisterForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
@@ -200,7 +202,7 @@ export default function RegisterForm() {
                         </Field>
                       </Box>
 
-                      <Button
+                      <Button 
                         mt='2vh'
                         borderRadius={10}
                         isLoading={props.isSubmitting}
