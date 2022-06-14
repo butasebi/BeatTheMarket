@@ -29,7 +29,7 @@ namespace CryptoGame.Controllers
             return Ok();
         }
 
-        [HttpGet("GetEmployeeById/{id}")]
+        [HttpGet("GetById/{id}")]
         [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetById([FromRoute] string id)
         {
@@ -38,7 +38,7 @@ namespace CryptoGame.Controllers
             return Ok(usersInfo);
         }
 
-        [HttpPost("UpdateEmployee")]
+        [HttpPost("UpdateUserInfo")]
         [Authorize(Policy = "Admin")]
         public async Task<IActionResult> Update([FromBody] UserInfoModel user)
         {

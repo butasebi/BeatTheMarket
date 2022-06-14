@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CryptoGame.Migrations
 {
     [DbContext(typeof(ProjectContext))]
-    [Migration("20220614132622_fixinguser-info")]
-    partial class fixinguserinfo
+    [Migration("20220614140626_migr")]
+    partial class migr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
