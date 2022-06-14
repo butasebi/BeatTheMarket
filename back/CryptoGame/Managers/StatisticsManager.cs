@@ -96,11 +96,36 @@ namespace CryptoGame.Managers
             }
             else
             {
-                throw new Exception("Type should be of type 'stock' or 'crypto");
+                throw new Exception("Type should be of type 'stock' or 'crypto'");
             }
 
             ret = ret.FindAll(statistics => statistics.Date >= time_start && statistics.Date <= time_end);
             ret.Sort((statistics1, statistics2) => statistics1.Date.CompareTo(statistics2.Date));
+
+            if (time_unit == "minute")
+            {
+                if (ret.Count < 720)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(720).ToList();
+            }
+            else if (time_unit == "day")
+            {
+                if (ret.Count < 365)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(365).ToList();
+            }
+            else if (time_unit == "week")
+            {
+                if (ret.Count < 520)
+                {
+                    throw new Exception("Too little data");
+                }
+                ret = ret.Take(520).ToList();
+            }
 
             return ret;
         }
