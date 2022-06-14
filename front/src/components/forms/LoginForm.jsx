@@ -71,6 +71,8 @@ export default function LoginForm() {
                       fetch("https://localhost:5001/api/Authentication/login",
                       {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})});
                       actions.setSubmitting(false);
+                      localStorage.setItem('isLoggedIn', 'true')
+                      window.location.reload()
                       toast({
                         // TODO color?
                         title: 'Login successful',
@@ -79,7 +81,6 @@ export default function LoginForm() {
                         duration: 3000,
                         isClosable: true
                       })
-                      onClose()
                     }, 1000);
                   }}
                 >

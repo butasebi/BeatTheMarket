@@ -44,7 +44,12 @@ export default function PlayingHistory() {
             <Text mt='4vh' mb='6vh' align='center' fontSize='3xl' variant='brand'>Play History</Text>
           </DrawerHeader>
           <DrawerBody>
-            <PlayingHistoryTable />
+            {
+              localStorage.getItem('isLoggedIn') === 'true' ?
+                <PlayingHistoryTable />
+                :
+                <Text fontSize='xl' align='center'>Login or create an account to see the playing history.</Text>
+            }
           </DrawerBody>
         </DrawerContent>
     </Drawer></>

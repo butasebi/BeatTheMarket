@@ -1,7 +1,26 @@
-import { Box, Flex, Heading, Link, Spacer, Image } from '@chakra-ui/react';
+import { Box, Flex, Heading, Link, Spacer, Image, Button } from '@chakra-ui/react';
 import ColorModeSwitcher from '../ColorModeSwitcher';
 import RegisterForm from '../forms/RegisterForm';
 import LoginForm from '../forms/LoginForm';
+
+function LogoutButton() {
+  function logOut() {
+    localStorage.setItem('isLoggedIn', 'false')
+    window.location.reload()
+  }
+
+  return (
+      <><Button
+      onClick={logOut}
+      borderRadius={10}
+      marginRight='1vh'
+      colorScheme='brand'
+    >
+      Logout
+    </Button>
+    </>
+  )
+}
 
 function Header() {
   return (
@@ -18,14 +37,14 @@ function Header() {
           <Link href='/'>Beat the Market</Link>
         </Heading>
         <Spacer />
-        {/* {isLoggedIn ? 
-          <> */}
+        {localStorage.getItem('isLoggedIn') === 'true' ? 
+          <LogoutButton />
+          :
+          <>
           <LoginForm />
           <RegisterForm />
-          {/* </>
-          :
-          null
-        } */}
+          </>
+        }
         <Flex marginLeft='auto'>
           <ColorModeSwitcher />
         </Flex>

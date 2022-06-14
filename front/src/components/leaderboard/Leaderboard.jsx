@@ -74,7 +74,12 @@ export default function Leaderboard() {
           /> */}
         </DrawerHeader>
         <DrawerBody>
-          <LeaderboardTable />
+          {
+            localStorage.getItem('isLoggedIn') === 'true' ?
+              <LeaderboardTable />
+              :
+              <Text fontSize='xl' align='center'>Login or create an account to see the leaderboard.</Text>
+          }
         </DrawerBody>
       </DrawerContent>
     </Drawer></>
