@@ -37,7 +37,7 @@ export default function LeaderboardTable() {
   let count = 0
 
   return (
-    <TableContainer mx='2vh' mt='0vh'>
+    <TableContainer mx='2vh'>
       <Table variant='simple' {...getTableProps}>
         <Thead>
           {headerGroups.map((headerGroup) => (

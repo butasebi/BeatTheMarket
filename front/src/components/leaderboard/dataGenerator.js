@@ -7,8 +7,8 @@ const users = [
   'Sebastian Buta',
   'Alex Enache',
   'Mihăiță Drăgan',
-  'Radu Ionescu',
-  'Răducu Ionescu Capybara',
+  'Răducu Ionescu',
+  'Ionescu Capybara',
   'Andrei Păun'
 ]
 

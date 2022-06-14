@@ -57,7 +57,7 @@ export default function Leaderboard() {
     <Drawer
     isOpen={isOpen}
     onClose={onClose}
-    size='full'
+    size='lg'
     placement='right'
     blockScrollOnMount={true}
     >
