@@ -76,12 +76,12 @@ namespace CryptoGame
                     }
                 });
             });
-            services.AddDbContext<ProjectContext>(options => options
+            services.AddDbContext<CryptoGameContext>(options => options
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 .UseSqlServer("Server = (localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
             services.AddIdentity<User, Role>()
-                .AddEntityFrameworkStores<ProjectContext>();
+                .AddEntityFrameworkStores<CryptoGameContext>();
             services
                 .AddAuthentication(options =>
                 {
@@ -117,10 +117,14 @@ namespace CryptoGame
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
 
-
-
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
             services.AddTransient<ITokenManager, TokenManager>();
+
+            services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
+            services.AddTransient<ILeaderboardManager, LeaderboardManager>();
+
+            services.AddTransient<IHistoryRepository, HistoryRepository>();
+            services.AddTransient<IHistoryManager, HistoryManager>();
 
 
         }
