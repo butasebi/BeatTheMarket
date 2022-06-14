@@ -1,6 +1,7 @@
 using CryptoGame.Entities;
 using CryptoGame.Managers;
 using CryptoGame.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,10 +11,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CryptoGame
@@ -73,15 +76,51 @@ namespace CryptoGame
                     }
                 });
             });
-            services.AddDbContext<CryptoGameContext>(options => options
+            services.AddDbContext<ProjectContext>(options => options
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 .UseSqlServer("Server = (localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
 
-            services.AddTransient<ILeaderboardRepository, LeaderboardRepository>();
-            services.AddTransient<ILeaderboardManager, LeaderboardManager>();
+            services.AddIdentity<User, Role>()
+                .AddEntityFrameworkStores<ProjectContext>();
+            services
+                .AddAuthentication(options =>
+                {
 
-            services.AddTransient<IHistoryRepository, HistoryRepository>();
-            services.AddTransient<IHistoryManager, HistoryManager>();
+                    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
+                .AddJwtBearer("AuthScheme", options =>
+                {
+                    options.SaveToken = true;
+                    var secret = Configuration.GetSection("Jwt").GetSection("SecretKey").Get<String>();
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        ValidateLifetime = true,
+                        RequireExpirationTime = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secret)),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero
+                    };
+                });
+
+            services.AddAuthorization(opt =>
+            {
+                opt.AddPolicy("BasicUser", policy => policy.RequireRole("BasicUser", "Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+                opt.AddPolicy("Admin", policy => policy.RequireRole("Admin").RequireAuthenticatedUser().AddAuthenticationSchemes("AuthScheme").Build());
+
+            });
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+
+
+
+
+            services.AddTransient<IAuthenticationManager, AuthenticationManager>();
+            services.AddTransient<ITokenManager, TokenManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
