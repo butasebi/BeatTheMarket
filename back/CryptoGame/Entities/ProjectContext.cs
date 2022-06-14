@@ -15,12 +15,17 @@ namespace CryptoGame.Entities
 
         public DbSet<Leaderboard> Leaderboard { get; set; }
         public DbSet<History> Histories { get; set; }
+
+        public DbSet<UserInfo> UsersInfo { get; set; }
         public ProjectContext(DbContextOptions<ProjectContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
 
             base.OnModelCreating(builder);
+
+           
+
 
         }
     }

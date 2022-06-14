@@ -128,6 +128,9 @@ namespace CryptoGame
             services.AddTransient<IHistoryRepository, HistoryRepository>();
             services.AddTransient<IHistoryManager, HistoryManager>();
 
+            services.AddTransient<IUserInfoRepository, UserInfoRepository>();
+            services.AddTransient<IUserInfoManager, UserInfoManager>();
+
 
         }
 
