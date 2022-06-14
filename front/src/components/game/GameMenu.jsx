@@ -140,11 +140,11 @@ function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
       (timeFrameValueSlider === 1) ? 'day' : 'week';
 
     const gameOptions = {
-      dataTimeInterval,
+      dataTimeInterval
     };
     if (isRandomDataset) {
       gameOptions.datasetOption = getRandomDatasetOption(
-        pickedDatasetCategories,
+        pickedDatasetCategories
       );
     } else {
       gameOptions.datasetOption = pickedDataset;
@@ -155,7 +155,7 @@ function GameMenu({ setGameOptions, setIsMainMenu, setIsPlaying }) {
       gameOptions.datasetOption, gameOptions.dataTimeInterval,
     );
     gameOptions.rawData = getData(
-      pickedDataset, gameOptions.startDate, gameOptions.dataTimeInterval,
+      gameOptions.datasetOption, gameOptions.startDate, gameOptions.dataTimeInterval,
     );
     gameOptions.endDate = gameOptions.rawData.at(-1).date;
 
