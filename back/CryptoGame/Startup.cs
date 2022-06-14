@@ -1,3 +1,5 @@
+using CryptoGame.Managers;
+using CryptoGame.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -32,6 +34,9 @@ namespace CryptoGame
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CryptoGame", Version = "v1" });
             });
+
+            services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            services.AddTransient<IStatisticsManager, StatisticsManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
