@@ -23,7 +23,7 @@ namespace CryptoGame.Managers
             {
                 symbol = "VCNIX";
             }
-            else if (symbol == "S&P 500")
+            else if (symbol == "SP 500")
             {
                 symbol = "500.PAR";
             }
