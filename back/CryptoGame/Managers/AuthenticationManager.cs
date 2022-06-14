@@ -27,8 +27,6 @@ namespace CryptoGame.Managers
         {
             var user = new User
             {
-                FirstName = signupUserModel.FirstName,
-                LastName = signupUserModel.LastName,
                 Email = signupUserModel.Email,
                 UserName = signupUserModel.Email
             };

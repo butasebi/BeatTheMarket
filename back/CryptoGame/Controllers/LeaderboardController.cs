@@ -1,5 +1,6 @@
 ﻿using CryptoGame.Entities;
 using CryptoGame.Managers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -27,6 +28,7 @@ namespace CryptoGame.Controllers
         }
 
         [HttpGet("leaderboard/byCurrency/{currency}")]
+        [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetLeaderboard(string currency)
         {
             var leaderboard = manager.GetLeaderboard(currency);
