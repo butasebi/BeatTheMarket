@@ -73,7 +73,6 @@ namespace CryptoGame
                     }
                 });
             });
-            
             services.AddDbContext<CryptoGameContext>(options => options
                 .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
                 .UseSqlServer("Server = (localdb)\\MSSQLLocalDB;Initial Catalog=CryptoGame;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
