@@ -10,6 +10,8 @@ namespace CryptoGame.Repositories
 
         Task Delete(Leaderboard leaderboard);
 
+        IQueryable<Leaderboard> GetLeaderboard();
+
         IQueryable<Leaderboard> GetLeaderboard(string currency);
 
         IQueryable<Leaderboard> GetLeaderboardById(string Id);

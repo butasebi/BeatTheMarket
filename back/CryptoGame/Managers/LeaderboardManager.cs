@@ -18,7 +18,10 @@ namespace CryptoGame.Managers
         {
             await LeaderboardRepo.AddRecord(leaderboard);
         }
-
+        public List<Leaderboard> GetLeaderboard()
+        {
+            return LeaderboardRepo.GetLeaderboard().ToList();
+        }
         public List<Leaderboard> GetLeaderboard(string currency)
         {
             return LeaderboardRepo.GetLeaderboard(currency).ToList();

@@ -20,6 +20,13 @@ namespace CryptoGame.Repositories
             await db.SaveChangesAsync();
         }
 
+        public IQueryable<Leaderboard> GetLeaderboard()
+        {
+            var leaderboard = db.Leaderboard;
+
+            return leaderboard;
+        }
+
         public IQueryable<Leaderboard> GetLeaderboard(string currency)
         {
             var leaderboard = from Leaderboard in db.Leaderboard

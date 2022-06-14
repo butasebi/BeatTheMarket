@@ -11,6 +11,8 @@ namespace CryptoGame.Managers
 
         Task Delete(Leaderboard leaderboard);
 
+        List<Leaderboard> GetLeaderboard();
+
         List<Leaderboard> GetLeaderboard(string currency);
 
         List<Leaderboard> GetLeaderboardById(string Id);

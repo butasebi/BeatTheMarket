@@ -27,6 +27,14 @@ namespace CryptoGame.Controllers
             return Ok();
         }
 
+        [HttpGet("leaderboard/getLeaderboard")]
+        public async Task<IActionResult> GetLeaderboard()
+        {
+            var leaderboard = manager.GetLeaderboard();
+
+            return Ok(leaderboard);
+        }
+
         [HttpGet("leaderboard/byCurrency/{currency}")]
         [Authorize(Policy = "BasicUser")]
         public async Task<IActionResult> GetLeaderboard(string currency)
