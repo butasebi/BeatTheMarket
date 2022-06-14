@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { 
   Button, 
   Text, 
@@ -8,11 +9,39 @@ import {
   DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
+  Box,
+  FormControl
 } from '@chakra-ui/react';
+import { Select } from 'chakra-react-select';
 import { RiBarChartFill } from 'react-icons/all';
+import { DATASETS } from '../../utils/constants';
+import LeaderboardTable from './LeaderboardTable';
 
 export default function Leaderboard() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  function SpecificDatasetSelect({ pickedDataset, setPickedDataset }) {
+    const handleChange = (option) => {
+      setPickedDataset(option);
+    };
+  
+    return (
+      <Box mt='6vh' mb='2vh' mx='2vh'>
+        <Text fontSize='lg'>Picked dataset:</Text>
+        <FormControl mt={2}>
+          <Select
+            hideSelectedOptions={false}
+            placeholder='Select a dataset...'
+            options={DATASETS}
+            value={pickedDataset}
+            onChange={handleChange}
+          />
+        </FormControl>
+      </Box>
+    );
+  }
+  
+  const [pickedDataset, setPickedDataset] = useState(null);
 
   return (
     <><Button width='100%' 
@@ -28,7 +57,7 @@ export default function Leaderboard() {
     <Drawer
     isOpen={isOpen}
     onClose={onClose}
-    size='md'
+    size='full'
     placement='right'
     blockScrollOnMount={true}
     >
@@ -39,9 +68,14 @@ export default function Leaderboard() {
       <DrawerContent>
         <DrawerCloseButton />
         <DrawerHeader>
-          <Text mt='4vh' align='center' fontSize='3xl' variant='brand'>Leaderboard</Text>
+          <Text mt='4vh' mb='6vh' align='center' fontSize='3xl' variant='brand'>Leaderboard</Text>
+          {/* <SpecificDatasetSelect
+            pickedDataset={pickedDataset} setPickedDataset={setPickedDataset}
+          /> */}
         </DrawerHeader>
-        <DrawerBody></DrawerBody>
+        <DrawerBody>
+          <LeaderboardTable dataset={pickedDataset}/>
+        </DrawerBody>
       </DrawerContent>
     </Drawer></>
   )
