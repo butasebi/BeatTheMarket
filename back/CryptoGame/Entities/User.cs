@@ -8,6 +8,11 @@ namespace CryptoGame.Entities
 {
     public class User : IdentityUser
     {
+        public string FirstName;
+
+        public string LastName;
+
         public ICollection<UserRole> UserRoles { get; set; }
+        
     }
 }
