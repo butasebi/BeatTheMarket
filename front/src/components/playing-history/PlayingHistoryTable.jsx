@@ -6,14 +6,11 @@ import {
   Tr,
   Th,
   Td,
-  TableContainer,
-  chakra
+  TableContainer
 } from '@chakra-ui/react';
-import { TriangleDownIcon, TriangleUpIcon } from '@chakra-ui/icons';
 import { useTable, useSortBy } from 'react-table';
 import getRandomData from './dataGenerator';
 
-// TODO times are sorted as strings...
 export default function PlayingHistoryTable() {
   const data = useMemo(() => getRandomData(20), [])
   const columns = useMemo(() => [
@@ -42,19 +39,10 @@ export default function PlayingHistoryTable() {
             <Tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
                 <Th
-                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  {...column.getHeaderProps()}
                   isNumeric={column.isNumeric}
                 >
                   {column.render('Header')}
-                  <chakra.span pl='4'>
-                    {column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <TriangleDownIcon aria-label='sorted descending' />
-                      ) : (
-                        <TriangleUpIcon aria-label='sorted ascending' />
-                      )
-                    ) : null}
-                  </chakra.span>
                 </Th>
               ))}
             </Tr>
