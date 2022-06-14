@@ -66,7 +66,8 @@ export default function RegisterForm() {
                   initialValues={{ email: '', password: '' }}
                   onSubmit={(values, actions) => {
                     setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
+                      fetch("https://localhost:5001/api/Authentication/login",
+                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})});
                       actions.setSubmitting(false);
                     }, 1000);
                   }}

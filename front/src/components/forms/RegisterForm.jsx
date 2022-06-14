@@ -27,6 +27,8 @@ import { Field, Form, Formik } from 'formik';
 // TODO Terms of Use and Privacy Policy?
 // TODO create account recommendation
 // TODO confirmation mail
+
+
 export default function RegisterForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
@@ -103,7 +105,9 @@ export default function RegisterForm() {
                   }}
                   onSubmit={(values, actions) => {
                     setTimeout(() => {
-                      alert(JSON.stringify(values, null, 2));
+                      fetch("https://localhost:5001/api/Authentication/sign-up",
+                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"firstName": values.firstName,"lastName": values.lastName, "email":values.email,"password":values.password , "roleId":"BasicUser"})});
+                      //fetch(JSON.stringify(values, null, 2));
                       actions.setSubmitting(false);
                     }, 1000);
                   }}
@@ -199,7 +203,7 @@ export default function RegisterForm() {
                         </Field>
                       </Box>
 
-                      <Button
+                      <Button 
                         mt='2vh'
                         borderRadius={10}
                         isLoading={props.isSubmitting}
