@@ -112,11 +112,12 @@ namespace CryptoGame
 
             });
 
+            services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+            services.AddTransient<IStatisticsManager, StatisticsManager>();
+
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-
-
 
 
             services.AddTransient<IAuthenticationManager, AuthenticationManager>();
@@ -127,7 +128,6 @@ namespace CryptoGame
 
             services.AddTransient<IHistoryRepository, HistoryRepository>();
             services.AddTransient<IHistoryManager, HistoryManager>();
-
 
         }
 
