@@ -166,6 +166,8 @@ We have created 5 unit tests in order to make sure that the historical data for 
 * Test for stock/index data with time frame = minutes
 * Test for stock/index data with time frame = days
 * Test for stock/index data with time frame = weeks
+
+<br/>
 ![unit-tests](https://github.com/butasebi/CryptoAnalyser/blob/main/unit-tests.png)
 
 ## Refactoring
