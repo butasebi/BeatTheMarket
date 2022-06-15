@@ -13,7 +13,7 @@ The application was designed and developed by:
 - [Luca Trușcă](https://github.com/Luca1152)
 
 ## Demo
-A recorded demo of the application can be found [here]().
+A recorded demo of the application can be found [here](). TODO
 
 ## User Stories
 Our team has come up with **10** user stories:
@@ -136,7 +136,10 @@ Id: string
 ```
 
 ## Build Tool
-The project was developed in ASP.NET 5 (backend) and React (frontend). TODO
+The project was developed in ASP.NET 5 (backend) and React (frontend).
+
+We have used Visual Studio as the IDE for the backend and the included build tool for ASP .NET projects.
+For the frontend, we have used Visual Studio Code as the IDE and NPM as the build tool.
 
 ## Design Patterns & Code Standards
 Used design patterns in React:
