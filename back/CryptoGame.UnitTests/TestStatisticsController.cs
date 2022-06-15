@@ -55,5 +55,20 @@ namespace CryptoGame.UnitTests
             // Assert
             result.StatusCode.ShouldBe(200);
         }
+
+        [Fact]
+        public async Task TestCryptoMinute()
+        {
+            // Arrange
+            IStatisticsRepository repository = new StatisticsRepository();
+            IStatisticsManager manager = new StatisticsManager(repository);
+            StatisticsController controller = new StatisticsController(manager);
+
+            // Act
+            var result = (OkObjectResult)await controller.GetStatistics("crypto", "BTC", "minute", DateTime.Parse("2020-01-01"), DateTime.Parse("2023-01-01"));
+
+            // Assert
+            result.StatusCode.ShouldBe(200);
+        }
     }
 }
