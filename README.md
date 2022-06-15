@@ -139,6 +139,7 @@ Id: string
 The project was developed in ASP.NET 5 (backend) and React (frontend).
 
 We have used Visual Studio as the IDE for the backend and the included build tool for ASP .NET projects.
+
 For the frontend, we have used Visual Studio Code as the IDE and NPM as the build tool.
 
 ## Design Patterns & Code Standards
