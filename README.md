@@ -160,7 +160,13 @@ Used coding standards:
 - Splitting the code into multiple files instead of writing a big file
 
 ## Automated Testing
-TODO
+We have created 5 unit tests in order to make sure that the historical data for the game is always returned properly:
+* Test for crypto data with time frame = minutes
+* Test for crypto data with time frame = days
+* Test for stock/index data with time frame = minutes
+* Test for stock/index data with time frame = days
+* Test for stock/index data with time frame = weeks
+![unit-tests](https://github.com/butasebi/CryptoAnalyser/blob/main/unit-tests.png)
 
 ## Refactoring
 Here are two examples of code refactoring along the making of the project:
