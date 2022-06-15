@@ -129,6 +129,8 @@ namespace CryptoGame
             services.AddTransient<IHistoryRepository, HistoryRepository>();
             services.AddTransient<IHistoryManager, HistoryManager>();
 
+            services.AddTransient<IUserRepository, UserRepository>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

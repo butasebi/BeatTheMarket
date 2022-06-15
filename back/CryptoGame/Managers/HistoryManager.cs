@@ -1,4 +1,5 @@
 ﻿using CryptoGame.Entities;
+using CryptoGame.Models;
 using CryptoGame.Repositories;
 using System.Collections.Generic;
 using System.Linq;

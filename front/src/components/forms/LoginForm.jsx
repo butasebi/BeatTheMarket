@@ -71,26 +71,34 @@ export default function LoginForm() {
                       fetch("https://localhost:5001/api/Authentication/login",
                       {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})})
                       .then((response) => {
-                        console.log(response)
-
                         if (response.ok) {
                           return response.json()
                         } else {
                           throw new Error('Email or password invalid')
                         }
                       })
-                      .then((responseJson) => {
+                      .then(async (responseJson) => {
                         actions.setSubmitting(false);
-                          localStorage.setItem('isLoggedIn', 'true')
-                          window.location.reload()
-                          toast({
-                            // TODO color?
-                            title: 'Login successful',
-                            description: 'Welcome!',
-                            status: 'success',
-                            duration: 3000,
-                            isClosable: true
-                          })
+
+                        localStorage.setItem('isLoggedIn', 'true')
+                        localStorage.setItem('email', values.email)
+
+                        let res = await fetch("https://localhost:5001/api/User/get-user?" + new URLSearchParams({email: values.email}))  
+                        let userData = await res.json();
+
+                        localStorage.setItem('id', userData.userId)
+                        localStorage.setItem('userName', userData.userName.replace('_', ' '))
+
+                        toast({
+                          // TODO color?
+                          title: 'Welcome, ' + localStorage.getItem('userName') + '!',
+                          description: 'Login successful',
+                          status: 'success',
+                          duration: 3000,
+                          isClosable: true
+                        })
+
+                        window.location.reload()
                       })
                       .catch((error) => {
                         console.log(error)

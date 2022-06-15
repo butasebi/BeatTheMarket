@@ -1,8 +1,10 @@
 ﻿using CryptoGame.Entities;
 using CryptoGame.Managers;
+using CryptoGame.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CryptoGame.Controllers
@@ -18,11 +20,19 @@ namespace CryptoGame.Controllers
             this.manager = manager;
         }
 
-        [HttpPost("Add a new record in the leaderboard")]
-        public async Task<IActionResult> Create([FromBody] Leaderboard leaderboard)
+        [HttpPost("add")]
+        public async Task<IActionResult> Create([FromBody] LeaderboardModel leaderboard)
         {
-
-            await manager.AddRecord(leaderboard);
+            var id = Guid.NewGuid().ToString("N");
+            await manager.AddRecord(new Leaderboard
+            {
+                Id = id,
+                FirstName = leaderboard.FirstName,
+                LastName = leaderboard.LastName,
+                Score = leaderboard.Score,
+                Currency = leaderboard.Currency,
+                RegisterDay = leaderboard.RegisterDay
+            });
 
             return Ok();
         }

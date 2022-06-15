@@ -1,4 +1,5 @@
 ﻿using CryptoGame.Entities;
+using CryptoGame.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

@@ -6,10 +6,13 @@ const users = [
   'Ionuț Anghelina',
   'Sebastian Buta',
   'Alex Enache',
-  'Mihăiță Drăgan',
-  'Răducu Ionescu',
   'Ionescu Capybara',
-  'Andrei Păun'
+  'Stănescu Lată',
+  'Ben Dover',
+  'Mike Hunt',
+  'Mike Oxlong',
+  'Hugh Jass',
+  'Jenny Tulls',
 ]
 
 const datasets = STOCKS.concat(INDEX_FUNDS).concat(CRYPTOCURRENCIES).map(d => d.value)

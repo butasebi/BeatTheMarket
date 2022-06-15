@@ -1,7 +1,9 @@
 ﻿using CryptoGame.Entities;
 using CryptoGame.Managers;
+using CryptoGame.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 
 namespace CryptoGame.Controllers
@@ -17,11 +19,18 @@ namespace CryptoGame.Controllers
             this.manager = manager;
         }
 
-        [HttpPost("Add a new record in the History")]
-        public async Task<IActionResult> Create([FromBody] History history)
+        [HttpPost("add")]
+        public async Task<IActionResult> Create([FromBody] HistoryModel history)
         {
-
-            await manager.AddRecord(history);
+            var id = Guid.NewGuid().ToString("N");
+            await manager.AddRecord(new History
+            {
+                Id = id,
+                UserId = history.UserId,
+                Score = history.Score,
+                Currency = history.Currency,
+                RegisterDay = history.RegisterDay
+            });
 
             return Ok();
         }

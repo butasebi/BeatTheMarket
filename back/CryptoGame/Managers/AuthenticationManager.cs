@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿ using Microsoft.AspNetCore.Identity;
 using CryptoGame.Entities;
 using CryptoGame.Models;
 using System;
@@ -28,8 +28,8 @@ namespace CryptoGame.Managers
             var user = new User
             {
                 Email = signupUserModel.Email,
-                UserName = signupUserModel.FirstName + signupUserModel.LastName
-            //UserName = signupUserModel.FirstName + " " + signupUserModel.LastName
+                //UserName = signupUserModel.FirstName + signupUserModel.LastName
+                UserName = signupUserModel.FirstName + "_" + signupUserModel.LastName
                 
             };
 

@@ -109,15 +109,27 @@ export default function RegisterForm() {
                   onSubmit={(values, actions) => {
                     setTimeout(() => {
                       fetch("https://localhost:5001/api/Authentication/sign-up",
-                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"firstName": values.firstName,"lastName": values.lastName, "email":values.email,"password":values.password , "roleId":"BasicUser"})});
-                      actions.setSubmitting(false);
-                      toast({
-                        title: 'Account created',
-                        description: 'We have created your account for you',
-                        status: 'success',
-                        duration: 3000,
-                        isClosable: true
+                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"firstName": values.firstName,"lastName": values.lastName, "email":values.email,"password":values.password , "roleId":"BasicUser"})})
+                      .then((response) => {
+                        console.log(response)
+
+                        if (response.ok) {
+                          actions.setSubmitting(false)
+                          toast({
+                            title: 'Account created',
+                            description: 'We have created your account for you',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: true
+                          })
+                        } else {
+                          throw new Error('An unexpected error occured.')
+                        }
                       })
+                      .catch((error) => {
+                        console.log(error)
+                      })
+                      
                       onClose()
                     }, 1000);
                   }}

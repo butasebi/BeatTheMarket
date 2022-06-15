@@ -48,6 +48,21 @@ function GameOverOverlay(
 
   const listItemProps = { mt: 4 };
 
+  // async function addToPlayingHistory(score, currency) {
+    // let arr = localStorage.getItem('userName').split(' ')
+
+  //   await fetch("https://localhost:5001/api/History/add", {
+  //     method: 'POST', 
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       'userId': localStorage.getItem('userId'),
+  //       'score': score,
+  //       'currency': currency,
+  //       'registerDay': new Date()
+  //     })
+  //   })  
+  // }
+
   return (
     <Box
       position='absolute' top='-5' bottom='-2' left='-2' right='-6'
@@ -94,6 +109,7 @@ function GameOverOverlay(
         <BackToMenuButton
           setIsMainMenu={setIsMainMenu} setIsGameOver={setIsGameOver}
         />
+        {/* {await addToPlayingHistory(userVsHoldPercentDiff, gameOptions.datasetOption.label)} */}
         <Flex width='100%' gap={8} mt={8}>
           <PlayingHistory />
           <Leaderboard />
