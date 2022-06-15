@@ -13,7 +13,7 @@ The application was designed and developed by:
 - [Luca Trușcă](https://github.com/Luca1152)
 
 ## Demo
-A recorded demo of the application can be found [here](). TODO
+A recorded demo of the application can be found [here](https://www.youtube.com/watch?v=ZCUHSLBua80).
 
 ## User Stories
 Our team has come up with **10** user stories:
