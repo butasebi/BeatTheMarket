@@ -13,7 +13,7 @@ The application was designed and developed by:
 - [Luca Trușcă](https://github.com/Luca1152)
 
 ## Demo
-A recorded demo of the application can be found [here]().
+A recorded demo of the application can be found [here](). TODO
 
 ## User Stories
 Our team has come up with **10** user stories:
@@ -136,7 +136,11 @@ Id: string
 ```
 
 ## Build Tool
-The project was developed in ASP.NET 5 (backend) and React (frontend). TODO
+The project was developed in ASP.NET 5 (backend) and React (frontend).
+
+We have used Visual Studio as the IDE for the backend and the included build tool for ASP .NET projects.
+
+For the frontend, we have used Visual Studio Code as the IDE and NPM as the build tool.
 
 ## Design Patterns & Code Standards
 Used design patterns in React:
@@ -160,7 +164,16 @@ Used coding standards:
 - Splitting the code into multiple files instead of writing a big file
 
 ## Automated Testing
-TODO
+We have created 5 unit tests in order to make sure that the historical data for the game is always returned properly:
+* Test for crypto data with time frame = minutes
+* Test for crypto data with time frame = days
+* Test for stock/index data with time frame = minutes
+* Test for stock/index data with time frame = days
+* Test for stock/index data with time frame = weeks
+
+<br/>
+
+![unit-tests](https://github.com/butasebi/CryptoAnalyser/blob/main/unit-tests.png)
 
 ## Refactoring
 Here are two examples of code refactoring along the making of the project:
@@ -177,3 +190,4 @@ We have experienced several bugs in the process, most of which are highlighted b
 * difficulty in hovering over chart points
 * chart's y axis is jittery at the beginning of the game
 * wrong number of data points for 12 hours timeframe
+* user toast after login appears for a short time before window reload
