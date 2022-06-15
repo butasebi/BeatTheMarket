@@ -69,17 +69,31 @@ export default function LoginForm() {
                   onSubmit={(values, actions) => {
                     setTimeout(() => {
                       fetch("https://localhost:5001/api/Authentication/login",
-                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})});
-                      actions.setSubmitting(false);
-                      localStorage.setItem('isLoggedIn', 'true')
-                      window.location.reload()
-                      toast({
-                        // TODO color?
-                        title: 'Login successful',
-                        description: 'Welcome!',
-                        status: 'success',
-                        duration: 3000,
-                        isClosable: true
+                      {method: 'POST', headers: { 'Content-Type': 'application/json' },body: JSON.stringify({"email":values.email,"password":values.password})})
+                      .then((response) => {
+                        console.log(response)
+
+                        if (response.ok) {
+                          return response.json()
+                        } else {
+                          throw new Error('Email or password invalid')
+                        }
+                      })
+                      .then((responseJson) => {
+                        actions.setSubmitting(false);
+                          localStorage.setItem('isLoggedIn', 'true')
+                          window.location.reload()
+                          toast({
+                            // TODO color?
+                            title: 'Login successful',
+                            description: 'Welcome!',
+                            status: 'success',
+                            duration: 3000,
+                            isClosable: true
+                          })
+                      })
+                      .catch((error) => {
+                        console.log(error)
                       })
                     }, 1000);
                   }}
