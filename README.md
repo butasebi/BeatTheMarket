@@ -177,3 +177,4 @@ We have experienced several bugs in the process, most of which are highlighted b
 * difficulty in hovering over chart points
 * chart's y axis is jittery at the beginning of the game
 * wrong number of data points for 12 hours timeframe
+* user toast after login appears for a short time before window reload
