@@ -56,5 +56,13 @@ namespace CryptoGame.Controllers
                 return BadRequest("Exception caught");
             }
         }
+
+        /**[HttpGet("getByEmail/{Email}")]
+        public async Task<IActionResult> GetByMail(String Email)
+        {
+            var user = authenticationManager.GetByEmail(Email);
+
+            return Ok(user);
+        }**/
     }
 }

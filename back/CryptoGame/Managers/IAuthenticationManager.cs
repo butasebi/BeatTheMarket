@@ -10,5 +10,8 @@ namespace CryptoGame.Managers
     {
         Task Signup(SignupUserModel signupUserModel);
         Task<TokenModel> Login(LoginUserModel loginUserModel);
+
+        String GetByMail(String Email);
+        
     }
 }

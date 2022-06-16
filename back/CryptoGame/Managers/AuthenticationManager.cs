@@ -13,14 +13,15 @@ namespace CryptoGame.Managers
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
         private readonly ITokenManager tokenManager;
-
+        private readonly IUserRepository UserRepo;
 
         public AuthenticationManager(UserManager<User> userManager, SignInManager<User> signInManager,
-            ITokenManager tokenManager)
+            ITokenManager tokenManager, IUserRepository userRepo)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.tokenManager = tokenManager;
+            this.UserRepo = userRepo;
         }
 
         public async Task Signup(SignupUserModel signupUserModel)
@@ -60,5 +61,10 @@ namespace CryptoGame.Managers
 
             return null;
         }
+        public String GetByEmail(string Email)
+        {
+            return UserRepo.GetByEmail(Email).ToList();
+        }
+
     }
 }
